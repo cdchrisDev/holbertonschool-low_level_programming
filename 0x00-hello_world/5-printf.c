@@ -1,8 +1,9 @@
 #include <stdio.h>
 
-/**main - entry point
+/**
+ *main - entry point
  *@void: idicates does not return anything
- *return: 0
+ *Return: 0 if success and another number if not
  */
 
 int main(void)
