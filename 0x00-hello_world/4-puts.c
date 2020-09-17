@@ -1,4 +1,5 @@
 #include <stdio.h>
+
 /**
  *main- entry point
  *Return: 0 in succes or other number in failure
