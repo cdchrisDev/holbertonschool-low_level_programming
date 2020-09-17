@@ -1,3 +1,7 @@
+/**
+ *Puts function - display a litle quote about programming
+ */
+
 #include <stdio.h>
 
 int main(void)
