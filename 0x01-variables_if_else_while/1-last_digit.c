@@ -32,7 +32,7 @@ int main(void)
 	else
 	{
 		m = n % 10;
-		printf("Last digit of %d is %d and is zero\n", n, m);
+		printf("Last digit of %d is %d and is 0\n", n, m);
 	}
 	return (0);
 }
