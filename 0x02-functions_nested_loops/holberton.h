@@ -1,6 +1,6 @@
+#include <unistd.h>
 #ifndef _PUTCHAR
 #define _PUTCHAR
-#include <unistd.h>
 
 int _putchar(char c)
 {
@@ -8,3 +8,17 @@ int _putchar(char c)
 }
 
 #endif
+/* start of 1-alphabet.c */
+int print_alphabet(void)
+{
+	int Alph;
+
+	for (Alph = 'a'; Alph <= 'z'; Alph++)
+	{
+		_putchar(Alph);
+	}
+	_putchar('\n');
+
+	return (0);
+}
+/* end of 1-alphabet.c */
