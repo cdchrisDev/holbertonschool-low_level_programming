@@ -5,6 +5,7 @@
 int _putchar(char c);
 char Hol[] = "Holberton";
 int letter;
+int Alph;
 
 #endif
 
