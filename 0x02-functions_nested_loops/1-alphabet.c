@@ -1,21 +1,16 @@
 #include "holberton.h"
 /**
- *main - entry point
- *@void: takes no parameters
- *Return: print 0 but the alphabet
+ * void print_alphabet(void) - entry point 
+ * Return: Return the alphabet
  */
 
-int main(void)
+void print_alphabet(void)
 {
-	int _putchar(char c);
-	char Alph;
+	int Alph;
 
 	for (Alph = 'a'; Alph <= 'z'; Alph++)
 	{
 		_putchar(Alph);
 	}
 	_putchar('\n');
-
-	return (0);
 }
-

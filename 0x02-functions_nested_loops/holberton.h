@@ -1,10 +1,8 @@
-#ifndef _PUTCHAR
-#define _PUTCHAR
+#ifndef HOLBERTON_H
+#define HOLBERTON_H
 
-int _putchar(char c);
-char Hol[] = "Holberton";
-int letter;
-int Alph;
+void _putchar(char c);
+void print_alphabet(void);
 
 #endif
 
