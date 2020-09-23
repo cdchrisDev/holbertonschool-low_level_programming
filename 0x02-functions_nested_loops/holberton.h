@@ -3,7 +3,7 @@
 #define _PUTCHAR
 
 int _putchar(char c);
-int char Hol[] = "Holberton";
+char Hol[] = "Holberton";
 int letter;
 
 #endif
