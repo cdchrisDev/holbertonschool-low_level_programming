@@ -1,5 +1,4 @@
 #include "holberton.h"
-
 /**
  *main - entry point
  *@void: takes no parameters
@@ -9,7 +8,7 @@
 int main(void)
 {
 	int _putchar(char c);
-	int Alph;
+	char Alph;
 
 	for (Alph = 'a'; Alph <= 'z'; Alph++)
 	{
