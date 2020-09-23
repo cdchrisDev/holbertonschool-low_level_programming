@@ -1,4 +1,3 @@
-#include <unistd.h>
 #ifndef _PUTCHAR
 #define _PUTCHAR
 
