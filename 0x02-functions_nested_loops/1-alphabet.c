@@ -1,9 +1,9 @@
 #include "holberton.h"
 /**
- * void print_alphabet(void) - entry point 
+ * print_alphabet(void) - entry point
+ * 
  * Return: Return the alphabet
  */
-
 void print_alphabet(void)
 {
 	int Alph;
