@@ -1,6 +1,6 @@
 #include "holberton.h"
 /**
- *mian - entry point
+ *print_alphabet_x10 - entry point
  *@void: takes no arguments
  *Description: increment letter a until reach z by 10 times
  *Return: print the alphabet x10
