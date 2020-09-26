@@ -1,7 +1,7 @@
 #include "holberton.h"
 /**
  *print_line - entry point
- *@void: no takes arguments
+ *@n: number of times
  *Description: shaping lines
  *Return: no returned
  */
