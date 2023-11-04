@@ -9,13 +9,14 @@ int main(void)
 {
 	int Alph;
 
-	for (Alph = 'a';Alph != 'z' + 1; Alph++)
-	{	
+	for (Alph = 'a'; Alph != 'z' + 1; Alph++)
+	{
 		if (Alph == 'q' || Alph == 'e')
 			continue;
 
 		putchar(Alph);
 	}
+	putchar('\n');
 
 	return(0);
 }
