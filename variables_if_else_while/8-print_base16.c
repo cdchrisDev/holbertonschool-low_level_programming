@@ -8,6 +8,7 @@
 int main(void)
 {
 	int n;
+
 	n = -1;
 
 	while (n <= 15)
@@ -23,7 +24,7 @@ int main(void)
 			{
 				putchar(n);
 				n++;
-			}	
+			}
 		}
 	}
 	putchar('\n');
