@@ -11,7 +11,7 @@ int main(void)
 
 	Alph = 'a';
 
-	while (Alph >='a' || Alph <= 'Z')
+	while (Alph >= 'a' || Alph <= 'Z')
 	{
 		putchar(Alph);
 		Alph++;
@@ -19,5 +19,7 @@ int main(void)
 		if (Alph > 'z')
 			Alph = 'A';
 	}
+	putchar('\n');
+
 	return (0);
 }
