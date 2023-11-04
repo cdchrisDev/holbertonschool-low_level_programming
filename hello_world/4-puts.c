@@ -1,11 +1,8 @@
-/**
- * Author: cdchris
- *
- * */
 #include <stdio.h>
 /**
- * main - Entry point
- *
+ * main - entry point
+ * @void: no parameter
+ * Description: this program prints something
  * Return: always 0
  */
 int main(void)
