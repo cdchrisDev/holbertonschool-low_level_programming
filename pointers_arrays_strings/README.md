@@ -17,7 +17,7 @@
 ```
 
 2. > write a function that return the length of a string
-	*Prototype: `int _strlen(char *s);`
+	* Prototype: `int _strlen(char *s);`
 ```
 	int c;
 
