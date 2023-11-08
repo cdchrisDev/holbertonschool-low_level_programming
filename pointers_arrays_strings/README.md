@@ -4,7 +4,8 @@
 * A pointer is a variable that contains the address of a variable. In short words, A pointer points a address of a variable
 	* We use them declaring a { pointvar } for '*' = "pointer" where will contain the addres of { var }
 
-```int *pointvar;
+```
+int *pointvar;
   
-  pointvar = var;
+pointvar = var;
 ```
