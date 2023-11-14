@@ -9,22 +9,22 @@ int main(void)
 {
 	int n;
 
-	n = -1;
+	n = 48;
 
-	while (n <= 7)
+	while (n <= 57)
 	{
-		if (n == 9)
+		if (n == 57)
 		{
-			continue;
+			putchar(n);
+			break;
 		}
-
-		putchar(n + '1');
+		else
+		{
+			putchar(n);
+			putchar(',');
+			putchar(' ');
+		}
 		n++;
-		putchar(',');
-		putchar(' ');
 	}
-
-	putchar('9');
-
 	return (0);
 }
