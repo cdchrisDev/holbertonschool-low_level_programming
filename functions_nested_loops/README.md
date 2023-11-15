@@ -1,1 +1,1 @@
-This is the functions and nested loops folder
+Tis is the functions and nested loops folder
