@@ -2,6 +2,8 @@
 /**
  * add - 2th called of func
  * add two numbers
+ * @a: den
+ * @b: mul
  * Return: int
  */
 
