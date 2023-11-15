@@ -3,14 +3,14 @@
  * mul - 2th called to func
  * a func to multiply two num
  * @a: den
- * @b: mul
- * Return: r = a * b;
+ * @n: mul
+ * Return: r = a * n;
  */
 int mul(int a, int n)
 {
 	int r;
 
-	r = a * b;
+	r = a * n;
 
 	return (r);
 }
