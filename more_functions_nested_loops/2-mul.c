@@ -6,7 +6,7 @@
  * @b: mul
  * Return: r = a * b;
  */
-int mul(int a, int n);
+int mul(int a, int n)
 {
 	int r;
 
