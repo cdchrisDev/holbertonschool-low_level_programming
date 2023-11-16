@@ -11,9 +11,9 @@ int main(void)
 
 	for (i = 1; i <= 100; i++)
 	{
-		if ((i % 3 == 0) && i != 90)
+		if (i % 3 == 0)
 		{
-			if (i == 15)
+			if (i == 15 || i == 90 || i == 60 || i == 45 || i == 75)
 				printf("FizzBuzz ");
 			else
 				printf("Fizz ");
