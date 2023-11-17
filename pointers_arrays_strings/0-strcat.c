@@ -12,19 +12,11 @@ char *_strcat(char *dest, char *src)
 
 	i = j = 0;
 
-	while (src[i] != '\0') /* find end of *src*/
+	while (*(src++) != '\0' + 1)
 		i++;
 
-	while ((dest[i++] = src[j++]) != '\0') /*copy src*/
+	while ((*(src++) = *(dest++)) != '\0')
 		;
-
-	j = 0;
-
-	while (*dest++)
-		j++;
-
-	*(dest + j + 1) = '\0';
-
 
 	return (dest);
 }
