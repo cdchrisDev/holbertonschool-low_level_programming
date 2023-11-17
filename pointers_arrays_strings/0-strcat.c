@@ -22,8 +22,9 @@ char *_strcat(char *dest, char *src)
 
 	while (*dest++)
 		j++;
-	
-	_putchar(j);
+
+	*(dest + j + 1) = '\0';
+
 
 	return (dest);
 }
