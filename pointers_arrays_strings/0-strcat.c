@@ -9,6 +9,7 @@
 char *_strcat(char *dest, char *src)
 {
 	int i, j;
+	char *p;
 
 	i = j = 0;
 
@@ -16,7 +17,10 @@ char *_strcat(char *dest, char *src)
 		i++;
 
 	while ((*(src++) = *(dest++)) != '\0')
-		;
+		j++;
 
-	return (dest);
+	p = &dest;
+
+	return (p);
+
 }

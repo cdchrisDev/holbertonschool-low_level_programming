@@ -8,12 +8,13 @@
  */
 void print_array(int *a, int n)
 {
-	n = '\0' - 1;
+	while (*a++ != '\0')
+	{
+		if (*a == '\0')
+			printf("%d",a[n]);
 
-	while (*a != '\0' - 1)
-	{	
-		printf("%d, ", *a);
-		a++;
-	}
-	printf("%d", *a);
+		else
+			printf("%d, ",a[n]);
+	 }
+
 }
