@@ -22,6 +22,7 @@ void times_table(void)
                 _putchar(result + '0');
                 _putchar(',');
                 _putchar(' ');
+		_putchar(' ');
             }
             else if (i == 9)
             {
@@ -48,8 +49,17 @@ void times_table(void)
                     _putchar(iz);
                     _putchar(der);
                 }
-                _putchar(',');
-                _putchar(' ');
+		if (den * mul + den > 9)
+		{
+                	_putchar(',');
+                	_putchar(' ');
+		}
+		else
+		{
+			_putchar(',');
+			_putchar(' ');
+			_putchar(' ');
+		}
                 if (den != 0)
                     mul++;
             }
