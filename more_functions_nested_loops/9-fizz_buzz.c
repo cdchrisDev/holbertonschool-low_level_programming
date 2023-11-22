@@ -13,7 +13,7 @@ int main(void)
 	{
 		if (i % 3 == 0)
 		{
-			if (i == 15 || i == 90 || i == 60 || i == 45 || i == 75)
+			if (i % 15 == 0)
 				printf("FizzBuzz ");
 			else
 				printf("Fizz ");
@@ -22,8 +22,10 @@ int main(void)
 		else if (i % 5 == 0)
 		{
 			if (i == 100)
+			{
 				printf("Buzz");
-
+				putchar('\n');
+			}
 			else
 				printf("Buzz ");
 		}
