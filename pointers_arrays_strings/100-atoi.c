@@ -6,7 +6,7 @@
  */
 int _atoi(char *s)
 {
-int sign = 1;
+	int sign = 1;
 	unsigned int num = 0;
 
 	do {
@@ -22,23 +22,4 @@ int sign = 1;
 	} while (*s++);
 
 	return (num * sign);
-/*	int sign;
-	unsigned int val;
-
-	val = 0;
-	sign = 1;
-
-	while (*s++ != '\0')
-	{
-		if (*s == '-')
-			sign *= -1;
-
-		if (*s >= '0' && *s <= '9')
-			val = (val * 10) + (*s - '0');
-
-		else if (val > 0)
-			break;
-	}
-	return (sign * val);
-*/	
 }
