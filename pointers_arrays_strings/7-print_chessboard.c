@@ -1,9 +1,8 @@
 #include "main.h"
 /**
- *
- *
- *
- *
+ * print_chessboard - a func to print the chessboard
+ * @a: a chess piece
+ * Return: the cheesboard
  */
 void print_chessboard(char (*a)[8])
 {
