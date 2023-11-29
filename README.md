@@ -68,6 +68,7 @@ In **UNIX**, the exit estatus is used to indicate that a program completed succe
 * `argv[0]` through to `argv[argc-1]` are pointers to strings whose meaning will be determined by the program.
 * `argv[0]` will be a string containing the program's name or a null string if that is not available. Remaining elements of `argv` represent the arguments supplied to the program. In cases where there is only support for single-case characters, the contents of these strings will be supplied to the program in lower-case.
 <br />
+
 ```
 #include <stdio.h>
 #include <stdlib.h>
@@ -79,7 +80,8 @@ int main(int argc, char **argv)
 	exit(EXIT_SUCCESS);
 }
 ```
-Passing the arguments `abcde, text, hello` and the program name `show_args`
+
+Passing the arguments `abcde, text, hello` and the program name `show_args`\
 ![illustration of the code](https://publications.gbdirect.co.uk//c_book/figures/10.1.png) <br />
 <br />
 Each time that `argv` is incremented, it is stepped one item further along the array of arguments. Thus after the first iteration of the loop, argv will point to the pointer which in turn points to the `abcde` argument\
