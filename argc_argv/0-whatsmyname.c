@@ -1,9 +1,10 @@
+#include <stdlib.h>
 #include <stdio.h>
 /**
- * main - a func to print its name, followed by n\
- * @argc: ...
- * @argv: ...
- * Return: func name
+ * main - program that prints its name, followed by a new line.
+ * @argc: counter of args
+ * @argv: args array
+ * Return: 1
  */
 int main(int argc, char **argv)
 {
