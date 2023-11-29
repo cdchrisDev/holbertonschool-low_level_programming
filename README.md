@@ -87,6 +87,7 @@ Passing the arguments `abcde, text, hello` and the program name `show_args`\
 Each time that `argv` is incremented, it is stepped one item further along the array of arguments. Thus after the first iteration of the loop, argv will point to the pointer which in turn points to the `abcde` argument\
 ![second example of code](https://publications.gbdirect.co.uk//c_book/figures/10.2.png) <br />
 <br />
+
 ```
 $ show_args abcde text hello
 show_args
@@ -96,3 +97,39 @@ hello
 $
 ```
 
+**The following program accept any number of command-line arguments and prints them out:**
+
+```
+#include <stdio.h>
+
+int main (int argc, char argv[])
+{
+	int count;
+
+	printf("This program was called with \"%s\".\n", argv[0]);
+
+	if (argc > 1)
+	{
+		for (count = 1; count < argc; count++);
+		{
+			printf("argv[%d] = %s\n", count, argv[count]);
+		}
+	}
+	else
+	{
+		printf("The command had no other arguments.\n");
+	}
+	return 0;
+}
+```
+
+If you name your executable `fubar`, and call it with the command `/fubar a b c`, it will print out the following text:
+
+```
+
+This program was called with "./fubar".
+argv[1] = a
+argv[2] = b
+argv[3] = c
+
+```
