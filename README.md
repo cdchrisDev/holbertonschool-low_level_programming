@@ -33,3 +33,16 @@ This command creates a static library named `libutil.a` and puts copies of the o
 -> `cc main.o -L. -lutil -o prog`\
 \
 This will create a program using object file `main.o`, and any symbols it requires from the `util` static library. Note that we omitted the `lib` prefix and the `.a` suffix when mentioning the library on the link command. The linker attaches these parts back to the name of the library to create a name of a file to look for. Note also the usage of the `-L` flag - this flag tells the linker that libraries might be found in the given directory (`'.'`, refering to the current directory), in addition to the standard locations where the compiler looks for system libraries.\
+
+**Creating A Share "C" Library Using "ld"**\
+Is similar to static. Compile a list of objects files, then insert them all into a shared library file. However, there are two major differences:\
+
+1. > __Compile for "Position Independent Code__ **(CID)** - When the object files are generated, we have no idea where in memory they will be inserted in a program that will use them. Many different programs may use the same library, ans each load it into a different memory in address. Thus, we need that all jump calls (`goto`, in assembly speak) and subroutines calls will use relative in most compilers, this is done by specifying `-fPIC` or `-fpic` on the compilation command.
+2. > __Library File Creation__ - unlike a static library, a shared library is not an archive file. It has a format that is specific to the architecture for which it is being created. Thus, we need to use the compiler (either the compiler's dirver, or its linker) to generate the library and tell it that it should create a shared library, not a final program file.
+
+```
+cc -fPIC -c util_file.c
+cc -fPIC -c util_net.c
+cc -fPIC -c util_math.c
+cc -shared libutil.so util_file.o util_net.o util_math.o
+```
