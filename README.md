@@ -46,3 +46,51 @@ cc -fPIC -c util_net.c
 cc -fPIC -c util_math.c
 cc -shared libutil.so util_file.o util_net.o util_math.o
 ```
+
+
+## C - argc and argv (argument count and argument vector)
+**Arguments to main**\
+provides a usuful oportunity to give parameters to programs. Typically, this facility is used to direct the way the program goes about it's task. It's particularly common to provide file names to a program through is arguments.\
+
+`int main(int arc, char *argv[]);`\
+ <br />
+In **UNIX**, the exit estatus is used to indicate that a program completed successfully **(a zero value)** or some error occurred **(a non-zero vale).** The Standard has adopted this convention; `exit(0)` is used to return `success` to its host environment, any other value is used to indicate failure. if the host environment itself uses a different numbering convention, `exit` will do the necessary translation. Since the translation is implementation-defined, it is now considered better practice to use the values defined in `<stdlib.h>`: `EXIT_SUCCESS` and `EXIT_FAILURE`.\
+<br />
+### Arguments
+* **argc:** Count of the arguments supplied to the program.
+* **argv:** An array of pointers to the strings, its type is (almost) *array of pointer to `char`* 
+* **NOTE:** `char *argv[]` and `char **argv` are equavalent. Remember too that when it is passed to a function, the name of an array is converted to the address of its first element.
+<br />
+
+### When a program starts, the arguments to main will have been initialized to meet the following conditions:
+* `argc` is greater than zero
+* `argv[argc]` is a null pointer
+* `argv[0]` through to `argv[argc-1]` are pointers to strings whose meaning will be determined by the program.
+* `argv[0]` will be a string containing the program's name or a null string if that is not available. Remaining elements of `argv` represent the arguments supplied to the program. In cases where there is only support for single-case characters, the contents of these strings will be supplied to the program in lower-case.
+<br />
+```
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char **argv)
+{
+	while(argc--)
+		printf("%s\n", *argv++);
+	exit(EXIT_SUCCESS);
+}
+```
+Passing the arguments `abcde, text, hello` and the program name `show_args`
+![illustration of the code](https://publications.gbdirect.co.uk//c_book/figures/10.1.png) <br />
+<br />
+Each time that `argv` is incremented, it is stepped one item further along the array of arguments. Thus after the first iteration of the loop, argv will point to the pointer which in turn points to the `abcde` argument\
+![second example of code](https://publications.gbdirect.co.uk//c_book/figures/10.2.png) <br />
+<br />
+```
+$ show_args abcde text hello
+show_args
+abcde
+text
+hello
+$
+```
+
