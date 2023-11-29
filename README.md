@@ -134,5 +134,5 @@ argv[3] = c
 
 ```
 
-### Best way to suppress 'Unused variables' warning
-`(void)argc;`
+### Best way to suppress 'Unused variables' warning are:
+`(void)argc;` and `__attribute__((unused))` -> on main first declaration.
