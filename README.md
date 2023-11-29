@@ -10,5 +10,5 @@ In the compilation time both are either linked into the program or one of its sh
 But, if we re-compile  the dynamic library and try to run a second copy of our program with the new library, we'll soon get stuck - `dynamic library` soon will find the copy of the library is already stored in memory, and thus will attach it to our program, and not load the new (modified) version from the disk\
 
 **Creating A Static "C" Library Using "ar" and "ranlib"**\
-`ar` for `archiver` Create **Static Libraries** *which are actually archive files*
+`ar` for `archiver` Create **Static Libraries** *which are actually archive files*\
 `ar rc libutil.a util_file.o util_net.o util_math.o`
