@@ -26,7 +26,7 @@ This command creates a static library named `libutil.a` and puts copies of the o
 * -> Use `ranlib` to re-generate the index.\
 
 * When copying the archive file to another location, use `cp -p`, instead of only `cp`. The `-p` flag tells `cp` to keep all attributes of the file, including its access permissions, owner *(if `cp` is invoked by a superuser)* and its last modification date. This will cause the compiler to think the index inside the file is still updated. This method is useful for makefiles that need to copy the library to another directory for some reason.
-\
+
 
 **Using a "C" Library In A Program**\
 \
