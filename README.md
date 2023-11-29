@@ -11,4 +11,5 @@ But, if we re-compile  the dynamic library and try to run a second copy of our p
 
 **Creating A Static "C" Library Using "ar" and "ranlib"**\
 `ar` for `archiver` Create **Static Libraries** *which are actually archive files*\
+\
 `ar rc libutil.a util_file.o util_net.o util_math.o`
