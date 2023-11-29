@@ -135,16 +135,4 @@ argv[3] = c
 ```
 
 ### Best way to suppress 'Unused variables' warning
-
-```
-#ifdef UNUSED
-#elif defined(__GNUC__)
-# define UNUSED(x) UNUSED_ ## x __attribute__((unused))
-#elif defined(__LCLINT__)
-# define UNUSED(x) /*@unused@*/ x
-#else
-# define UNUSED(x) x
-#endif
-
-void dcc_mon_siginfo_handler(int UNUSED(whatsig))
-```
+`(void)argc;`
