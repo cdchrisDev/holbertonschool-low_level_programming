@@ -168,8 +168,9 @@ void cisfun(unsigned int n1, unsigned int n2)
 
 ```
 char *str;
-		/* string literals = double quotes strings*/
+		/string literals = double quotes strings/
 str = "School";
+
 ```
 
 The string `"School"` that was just declared is stored automatically in memory when the program is launched. But, the memory that stores the string is only readable. In fact, if you try to change a character using str, you will have a little surprise :)\
@@ -180,7 +181,7 @@ The string `"School"` that was just declared is stored automatically in memory w
 void segf(void)
 {
 	char *str;
-		/* Segmentation fault (core dumped) */
+		/ Segmentation fault (core dumped) /
 	str = "School";
 	str[0] = 's';
 }
@@ -202,11 +203,6 @@ So it is possible to modify this copy.
 ```
 #include <stdio.h>
 
-/**
- * print_school - prints "school"
- *
- * Return: nothing.
- */
 void print_school(void)
 {
     char str[] = "School";
@@ -215,11 +211,7 @@ void print_school(void)
     printf("%s\n", str);
 }
 
-/**
- *  main - concept introduction
- *
- * Return: 0.
- *
+
 int main(void)
 {
     print_school();
