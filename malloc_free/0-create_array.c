@@ -23,6 +23,10 @@ char *create_array(unsigned int size, char c)
 			i++;
 		}
 	}
+
+	if (ci == NULL)
+		return (NULL);
+
 	return (ci);
 	free(ci);
 }
