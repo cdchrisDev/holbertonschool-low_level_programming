@@ -226,6 +226,9 @@ The string "School" is copied into this array.\
 And this is the memory state when the program leaves the func `print_school`:
  ![memory address](https://s3.eu-west-3.amazonaws.com/hbtn.intranet/uploads/medias/2022/8/f9d8928eedb59bc51a2706113cd850f99c79f958.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4MYA5JM5DUTZGMZG%2F20231130%2Feu-west-3%2Fs3%2Faws4_request&X-Amz-Date=20231130T183606Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=c6b42ff0b8165ade197da306739a4619ffcb0b1def793f47f697e4607cdd66d7)
 Note, again, that the string `"School"` is still present in the memory
-**Why would I need dynamic allocation?**
+**Why would I need dynamic allocation?**\
 We use dynamic allocation for inputs that are no fixed to a certain spaces. Insted, since we sometimes don't actually know how big is going to be a var. That's when dynamic memory comes into play.
 ### Dynamic Allocation
+The `malloc` func allocates a num of bytes in memory and returs a pointer to the allocated memory. Will have read and write permissions.\
+* Prototype: `void *malloc(size_t size);
+* Where `void *`
