@@ -176,7 +176,6 @@ The string `"School"` that was just declared is stored automatically in memory w
 <br />
 
 ```
-
 void segf(void)
 {
 	char *str;
@@ -184,7 +183,6 @@ void segf(void)
 	str = "School";
 	str[0] = 's';
 }
-
 ```
 <br />
 In the above example, the var `str` is a pointer to a char, that is initialized to the address of the first character of the string "School". But the memory storing the string "School2 is **READ-ONLY** and will also not be released when the function returns. This is the state of the memory after the line `str = "School"` is executed.
