@@ -229,6 +229,6 @@ Note, again, that the string `"School"` is still present in the memory
 **Why would I need dynamic allocation?**\
 We use dynamic allocation for inputs that are no fixed to a certain spaces. Insted, since we sometimes don't actually know how big is going to be a var. That's when dynamic memory comes into play.
 ### Dynamic Allocation
-The `malloc` func allocates a num of bytes in memory and returs a pointer to the allocated memory. Will have read and write permissions.\
-* Prototype: `void *malloc(size_t size);
+The `malloc` func allocates a num of bytes in memory and returs a pointer to the allocated memory. Will have read and write permissions.
+* Prototype: `void *malloc(size_t size);`
 * Where `void *`
