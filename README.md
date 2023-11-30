@@ -184,56 +184,6 @@ void segf(void)
 	str[0] = 's';
 }
 ```
-
 <br />
 In the above example, the var `str` is a pointer to a char, that is initialized to the address of the first character of the string "School". But the memory storing the string "School2 is **READ-ONLY** and will also not be released when the function returns. This is the state of the memory after the line `str = "School"` is executed.
 <br />
-![Adress memory22](https://s3.eu-west-3.amazonaws.com/hbtn.intranet/uploads/medias/2022/8/29dd5c267b1c6e4bdd13c2efa9df71e1f2a2f7e0.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4MYA5JM5DUTZGMZG%2F20231130%2Feu-west-3%2Fs3%2Faws4_request&X-Amz-Date=20231130T183606Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=f54fe05702f50c35cf81485992cc863e82ef2a6c3484045accdde1a3fb96ad53)
-<br />
-And this is the state of the memory after the function returns:
-<br />
-![memory address](https://s3.eu-west-3.amazonaws.com/hbtn.intranet/uploads/medias/2022/8/683d365753bb64d96f9e8c8deee6d0523db179f1.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4MYA5JM5DUTZGMZG%2F20231130%2Feu-west-3%2Fs3%2Faws4_request&X-Amz-Date=20231130T183606Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=85d1888eff65989a08d66861e1d8c15fdbd040ab3ddb0d0370a7163930b44131)
-<br />
-Note that when using the notation: `char s[] = "School"`, the array `s` holds a copy of the string "School".<br />
-So it is possible to modify this copy.
-
-```
-#include <stdio.h>
-
-void print_school(void)
-{
-    char str[] = "School";
-
-    str[0] = 's';
-    printf("%s\n", str);
-}
-
-
-int main(void)
-{
-    print_school();
-    return (0);
-}
-```
-
-<br />
-This is the memory before the call to `print_school`:<br />
-![memory address](https://s3.eu-west-3.amazonaws.com/hbtn.intranet/uploads/medias/2022/8/40996bf95c7a495a9f26e23dc2b17c0c43e56d2e.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4MYA5JM5DUTZGMZG%2F20231130%2Feu-west-3%2Fs3%2Faws4_request&X-Amz-Date=20231130T183606Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=2718ca93f98bf6e5a071157f80fe5f1a1b0d1ff9eba5b25fb8c9e142f757112f)
-<br />
-
-Note that the string `"School"` is always represent in the memory.\
-This is the memory right before the line `str[0] = s` is executed:\
-![memory address](https://s3.eu-west-3.amazonaws.com/hbtn.intranet/uploads/medias/2022/8/d8bd956d1f99c8fd608d4f8a2dc8c155303e3a2a.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4MYA5JM5DUTZGMZG%2F20231130%2Feu-west-3%2Fs3%2Faws4_request&X-Amz-Date=20231130T183606Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=9f4f9f382dbde2a891cc6c8e1175d199b76e01bde8a773ca4b1b94f2046ed5d0)
-<br />
-Note the differences:\
-* The var `str` is not a pointer, it's an array. str does not hold the memory address of the string `"School"`, but a copy of it.
-* The string "School" is copied into this array.
-<br />
-And this is the memory state when the program leaves the func `print_school`:
-![memory address](https://s3.eu-west-3.amazonaws.com/hbtn.intranet/uploads/medias/2022/8/f9d8928eedb59bc51a2706113cd850f99c79f958.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4MYA5JM5DUTZGMZG%2F20231130%2Feu-west-3%2Fs3%2Faws4_request&X-Amz-Date=20231130T183606Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=c6b42ff0b8165ade197da306739a4619ffcb0b1def793f47f697e4607cdd66d7)
-<br />
-Note, again, that the string `"School"` is still present in the memory<br />
-**Why would I need dynamic allocation?**<br />
-We use dynamic allocation for inputs that are no fixed to a certain spaces. Insted, since we sometimes don't actually know how big is going to be a var. That's when dynamic memory comes into play.
-<br />
-### Dynamic Allocation
