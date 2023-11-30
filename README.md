@@ -231,4 +231,25 @@ We use dynamic allocation for inputs that are no fixed to a certain spaces. Inst
 ### Dynamic Allocation
 The `malloc` func allocates a num of bytes in memory and returs a pointer to the allocated memory. Will have read and write permissions.
 * Prototype: `void *malloc(size_t size);`
-* Where `void *`
+* Where `void *` means it is a pointer to type of your choice
+* and `size` is the number of bytes you need to allocate
+```
+#include <stdio.h>
+#include <stdlib.h>
+
+nt main(void)
+{
+    char *str;
+
+    str = malloc(sizeof(char) * 3);
+    str[0] = 'O';
+    str[1] = 'K';
+    str[2] = '\0';
+    printf("%s\n", str);
+    return (0);
+}
+julien@ubuntu:~/c/malloc$ gcc malloc_example.c -o m
+julien@ubuntu:~/c/malloc$ ./m
+OK
+julien@ubuntu:~/c/malloc$ 
+```
