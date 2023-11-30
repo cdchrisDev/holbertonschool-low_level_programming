@@ -276,6 +276,57 @@ int main(void)
 We use `malloc` to create a space in memory where can store three integers.
 <br />
 <br />
-**Memory**\
+### Memory
 Contrary to local var and func parameters, the memory that is allocated with `malloc` is not automatically released when the func returns.
+```
+#include <stdio.h>
+#include <stdlib.h>
 
+void m(int n0, int n1, int n2)
+{
+    int *t;
+    int sum;
+
+    t = malloc(sizeof(*t) * 3);
+    t[0] = n0;
+    t[1] = n1;
+    t[2] = n2;
+    sum = t[0] + t[1] + t[2];
+    printf("%d + %d + %d = %d\n", t[0], t[1], t[2], sum);
+}
+
+int main(void)
+{
+    m(98, 402, -1024);
+    return (0);
+}
+```
+This is what the memory would look like before the func `m` returns:\
+![Addr Mem.](https://s3.eu-west-3.amazonaws.com/hbtn.intranet/uploads/misc/2020/9/b85d599111ab5ddf834ca90e7f0b589b0f7a3de7.PNG?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4MYA5JM5DUTZGMZG%2F20231130%2Feu-west-3%2Fs3%2Faws4_request&X-Amz-Date=20231130T183606Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=f963e06b2fd9c3b110abddf67dc3c81f83f0823b3719aa01a843b33853c22c19)\
+And this will be the state of the memory after the function m returns:\
+![Mem addr.](https://s3.eu-west-3.amazonaws.com/hbtn.intranet/uploads/misc/2020/9/4956b6e9fce3999ce47a1a39766c7c6f742c09a6.PNG?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4MYA5JM5DUTZGMZG%2F20231130%2Feu-west-3%2Fs3%2Faws4_request&X-Amz-Date=20231130T183606Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=d68485ce96fc5ac3b402e55d3b4916c5440a4fb662552c345b1fca83b4a3f335)\
+**The memory is not initialized**\
+Both Auto alloc and `malloc` does not initiate mem spaces
+<br />
+<br />
+### Free
+when you are using `malloc`, you have to handle the memory yourself. This means that:
+* You need to keep track of all the addresses of the allocated memory (In a var of type pointer)
+* You have to deallocate every memory space you previously allocaed yourself. if you do not do this, then your program can run out of memory and your program might kill it self.
+```
+int main(void)
+{
+    while (1)
+    {
+        malloc(sizeof(char) * 1024);
+    }
+    return (0);
+}
+julien@ubuntu:~/c/malloc$ gcc while_malloc.c -o killme
+julien@ubuntu:~/c/malloc$ ./killme 
+Killed
+julien@ubuntu:~/c/malloc$ 
+```
+The `free` functions frees the memory space which have been allocated by a previous call to `malloc` (pr `calloc`, or `realloc).\
+* Prototype: `void free(void *ptr);`
+* 
