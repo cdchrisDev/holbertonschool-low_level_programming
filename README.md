@@ -187,7 +187,7 @@ void segf(void)
 <br />
 In the above example, the var `str` is a pointer to a char, that is initialized to the address of the first character of the string "School". But the memory storing the string "School2 is **READ-ONLY** and will also not be released when the function returns. This is the state of the memory after the line `str = "School"` is executed.\
 <br />
-![memory address](https://s3.eu-west-3.amazonaws.com/hbtn.intranet/uploads/medias/2022/8/29dd5c267b1c6e4bdd13c2efa9df71e1f2a2f7e0.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4MYA5JM5DUTZGMZG%2F20231130%2Feu-west-3%2Fs3%2Faws4_request&X-Amz-Date=20231130T183606Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=f54fe05702f50c35cf81485992cc863e82ef2a6c3484045accdde1a3fb96ad53)
+[](https://s3.eu-west-3.amazonaws.com/hbtn.intranet/uploads/medias/2022/8/29dd5c267b1c6e4bdd13c2efa9df71e1f2a2f7e0.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4MYA5JM5DUTZGMZG%2F20231130%2Feu-west-3%2Fs3%2Faws4_request&X-Amz-Date=20231130T183606Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=f54fe05702f50c35cf81485992cc863e82ef2a6c3484045accdde1a3fb96ad53)
 <br />
 And this is the state of the memory after the function returns:\
 <br />
@@ -216,7 +216,7 @@ void print_school(void)
  *  main - concept introduction
  *
  * Return: 0.
- */
+ *
 int main(void)
 {
     print_school();
@@ -245,4 +245,3 @@ Note, again, that the string `"School"` is still present in the memory\
 We use dynamic allocation for inputs that are no fixed to a certain spaces. Insted, since we sometimes don't actually know how big is going to be a var. That's when dynamic memory comes into play.\
 <br />
 ### Dynamic Allocation
-**Malloc**
