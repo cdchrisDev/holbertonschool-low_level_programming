@@ -332,7 +332,8 @@ The `free` functions frees the memory space which have been allocated by a previ
 * where `ptr` is the address of the memory space previously allocated by and returned by a call to `malloc`.
 <br />
 <br />
-**Example:**<br /> 
+
+**Example:**
 
 ```
 void m(int n0, int n1, int n2)
