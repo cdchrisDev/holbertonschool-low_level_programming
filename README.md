@@ -170,7 +170,6 @@ void cisfun(unsigned int n1, unsigned int n2)
 char *str;
 		/string literals = double quotes strings/
 str = "School";
-
 ```
 
 The string `"School"` that was just declared is stored automatically in memory when the program is launched. But, the memory that stores the string is only readable. In fact, if you try to change a character using str, you will have a little surprise :)\
