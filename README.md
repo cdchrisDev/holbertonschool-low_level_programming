@@ -256,4 +256,25 @@ julien@ubuntu:~/c/malloc$
 we use `malloc` to create a 3 byte allocated space in memory. Operator `sizeof`. It's very important because data types can be different size depending on what machine is run on. Here we're saying we want 3 times the size of char. **Always use `sizeof` for a better portability**\
 <br />
 Let's see another example, with integers
+<br />
+```
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void)
+{
+    int *tab;
+
+    tab = malloc(sizeof(*tab) * 3);
+    tab[0] = 98;
+    tab[1] = -1024;
+    tab[2] = 402;
+    printf("%d, %d, %d\n", tab[0], tab[1], tab[2]);
+    return (0);
+}
+```
+We use `malloc` to create a space in memory where can store three integers.
+<br />
+**Memory**\
+Contrary to local var and func parameters, the memory that is allocated with `malloc` is not automatically released when the func returns.
 
