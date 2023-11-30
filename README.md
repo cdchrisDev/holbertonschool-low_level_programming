@@ -253,3 +253,6 @@ julien@ubuntu:~/c/malloc$ ./m
 OK
 julien@ubuntu:~/c/malloc$ 
 ```
+we use `malloc` to create a 3 byte allocated space in memory. Operator `sizeof`. It's very important because data types can be different size depending on what machine is run on. Here we're saying we want 3 times the size of char. **Always use `sizeof` for a better portability**\
+Let's see another example, with integers
+
