@@ -329,4 +329,30 @@ julien@ubuntu:~/c/malloc$
 ```
 The `free` functions frees the memory space which have been allocated by a previous call to `malloc` (pr `calloc`, or `realloc).\
 * Prototype: `void free(void *ptr);`
-* 
+* where `ptr` is the address of the memory space previously allocated by and returned by a call to `malloc`
+<br />
+<br />
+**Example:**
+```
+void m(int n0, int n1, int n2)
+{
+    int *t;
+    int sum;
+
+    t = malloc(sizeof(*t) * 3);
+    t[0] = n0;
+    t[1] = n1;
+    t[2] = n2;
+    sum = t[0] + t[1] + t[2];
+    printf("%d + %d + %d = %d\n", t[0], t[1], t[2], sum);
+    free(t);
+}
+
+int main(void)
+{
+    m(98, 402, -1024);
+    return (0);
+}
+``` 
+The memory allocated by `malloc` is `freed`'d with a call to the function `free`.\
+You should always `free` all `malloc`ed memory spaces.
