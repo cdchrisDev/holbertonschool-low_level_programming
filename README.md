@@ -275,6 +275,7 @@ int main(void)
 ```
 We use `malloc` to create a space in memory where can store three integers.
 <br />
+<br />
 **Memory**\
 Contrary to local var and func parameters, the memory that is allocated with `malloc` is not automatically released when the func returns.
 
