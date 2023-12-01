@@ -1,38 +1,54 @@
 #include <stdlib.h>
-#include "main.h"
 #include <stdio.h>
+
 /**
- * str_concat - concatenate two strings
- * @s1: char
- * @s2: char
- * Return: the concatenated string
+ * str_concat - concatenates two strings.
+ *
+ * @s1: char pointer
+ *
+ * @s2: char pointer
+ *
+ *  Return: strTemp
  */
+
 char *str_concat(char *s1, char *s2)
 {
-	char *strcctnd;
-	int cnt1 = 0, cnt2 = 0, i, j;
+	int counter1, counter2, i, j;
+	char *strTemp;
+
+	counter1 = 0;
+	counter2 = 0;
 
 	if (s1 == NULL)
+	{
 		s1 = "";
-
+	}
 	if (s2 == NULL)
+	{
 		s2 = "";
-
-	while (s1[cnt1++] != '\0');
-
-	while (s2[cnt2++] != '\0');
-
-	cnt2++;
-	strcctnd = malloc(sizeof(char) * (cnt1 + cnt2));
-
-	if (strcctnd == NULL)
+	}
+	while (s1[counter1] != '\0')
+	{
+		counter1++;
+	}
+	while (s2[counter2] != '\0')
+	{
+		counter2++;
+	}
+	counter2++;
+	strTemp = malloc(sizeof(char) * (counter1 + counter2));
+	if (strTemp == NULL)
+	{
 		return (NULL);
+	}
+	for (i = 0; i < counter1; i++)
+	{
+		strTemp[i] =  s1[i];
+	}
 
-	for (i = 0; i < cnt1; i++)
-		strcctnd[i] = s1[i];
-
-	for (j = 0; j < cnt2; j++)
-		strcctnd[i + j] = s2[j];
-
-	return (strcctnd);
+	for (j = 0; j < counter2; j++)
+	{
+		strTemp[i + j] = s2[j];
+	}
+	return (strTemp);
 }
