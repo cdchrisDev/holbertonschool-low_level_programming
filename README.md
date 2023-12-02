@@ -420,3 +420,152 @@ julien@ubuntu:~/c/malloc$ valgrind ./m
 ==3749== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 julien@ubuntu:~/c/malloc$ 
 ```
+**WE DEFINITELY LOST: 12 bytes in 1 block**
+```
+julien@ubuntu:~/c/malloc$ cat free_mem.c
+#include <stdio.h>
+#include <stdlib.h>
+
+/**
+ * m - stores 3 int in a new allocated space in memory and prints the sum
+ * @n0: integer to store and print
+ * @n1: integer to store and print
+ * @n2: integer to store and print
+ *
+ * Return: nothing
+ */
+void m(int n0, int n1, int n2)
+{
+    int *t;
+    int sum;
+
+    t = malloc(sizeof(*t) * 3);
+    t[0] = n0;
+    t[1] = n1;
+    t[2] = n2;
+    sum = t[0] + t[1] + t[2];
+    printf("%d + %d + %d = %d\n", t[0], t[1], t[2], sum);
+    free(t);
+}
+
+/**
+ * main - introduction to malloc and free
+ *
+ * Return: 0.
+ */
+int main(void)
+{
+    m(98, 402, -1024);
+    return (0);
+}
+julien@ubuntu:~/c/malloc$ gcc free_mem.c -o f
+julien@ubuntu:~/c/malloc$ valgrind ./f
+==3763== Memcheck, a memory error detector
+==3763== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
+==3763== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
+==3763== Command: ./f
+==3763== 
+98 + 402 + -1024 = -524
+==3763== 
+==3763== HEAP SUMMARY:
+==3763==     in use at exit: 0 bytes in 0 blocks
+==3763==   total heap usage: 2 allocs, 2 frees, 1,036 bytes allocated
+==3763== 
+==3763== All heap blocks were freed -- no leaks are possible
+==3763== 
+==3763== For counts of detected and suppressed errors, rerun with: -v
+==3763== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+julien@ubuntu:~/c/malloc$ 
+```
+**all heap blocks were freed - no leaks are possible.** This is what you should always aim for.
+### Don't trust anyone
+On error, `malloc` return `NULL`. As for any other C library function, you should always check `malloc` return
+value before using it. If you don't will run into segfaults.
+```
+julien@ubuntu:~/c/malloc$ cat malloc_segf.c
+#include <stdlib.h>
+#include <limits.h>
+
+/**
+ * main - introduction to malloc and free
+ *
+ * Return: 0.
+ */
+int main(void)
+{
+    char *s;
+
+    while (1)
+    {
+        s = malloc(INT_MAX);
+        s[0] = 'H';
+    }
+    return (0);
+}
+julien@ubuntu:~/c/malloc$ gcc malloc_segf.c -o s
+julien@ubuntu:~/c/malloc$ ./s
+Segmentation fault (core dumped)
+julien@ubuntu:~/c/malloc$ 
+```
+This is how to check the return value of `malloc`:
+```
+julien@ubuntu:~/c/malloc$ cat malloc_segf.c
+#include <stdlib.h>
+#include <limits.h>
+
+/**
+ * main - introduction to malloc and free
+ *
+ * Return: 0.
+ */
+int main(void)
+{
+    char *s;
+
+    while (1)
+    {
+        s = malloc(INT_MAX);
+        s[0] = 'H';
+    }
+    return (0);
+}
+julien@ubuntu:~/c/malloc$ gcc malloc_segf.c -o s
+julien@ubuntu:~/c/malloc$ ./s
+Segmentation fault (core dumped)
+julien@ubuntu:~/c/malloc$ 
+This is an example on how to check the return value of malloc:
+
+julien@ubuntu:~/c/malloc$ cat malloc_check.c
+#include <stdlib.h>
+#include <limits.h>
+#include <stdio.h>
+
+/**
+ * main - introduction to malloc and free
+ *
+ * Return: 0.
+ */
+int main(void)
+{
+    char *s;
+    int i;
+
+    i = 0;
+    while (1)
+    {
+        s = malloc(INT_MAX);
+        if (s == NULL)
+        {
+            printf("Can't allocate %d bytes (after %d calls)\n", INT_MAX, i);
+            return (1);
+        }
+        s[0] = 'H';
+        i++;
+    }
+    return (0);
+}
+julien@ubuntu:~/c/malloc$ gcc malloc_check.c -o c
+julien@ubuntu:~/c/malloc$ ./c
+Can't allocate 2147483647 bytes (after 0 calls)
+julien@ubuntu:~/c/malloc$ 
+```
