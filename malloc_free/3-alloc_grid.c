@@ -9,20 +9,21 @@
  */
 int **alloc_grid(int width, int height)
 {
-	int j, i;
+	int j = 0, i = 0;
 	int **gridint;
-
-	gridint[j][] = malloc(sizeof(int *) * height);
-	gridint[][i] = malloc(sizeof(int *) * width);
-
-	if (gridint == NULL)
-		return (NULL);
 
 	if (height <= 0 || width <= 0)
 		return (NULL);
 
-	for (j = 0; j <= height; j++)
+	gridint = malloc(sizeof(int *) * height); /* Array to pointers to int */
+
+	if (gridint == 0)
+		return (NULL);
+
+	for (; j <= height; j++)
 	{
+		gridint[j] = malloc(sizeof(int) * width);
+
 		if (gridint[j] == NULL)
 		{
 			for (; j >= 0; j--)
@@ -32,7 +33,7 @@ int **alloc_grid(int width, int height)
 			return (NULL);
 		}
 	}
-	for (j = 0; j < height; j++)
+	for (; j < height; j++)
 		for (i = 0; i < width; i++)
 			gridint[j][i] = 0;
 
