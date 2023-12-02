@@ -357,3 +357,67 @@ int main(void)
 ``` 
 The memory allocated by `malloc` is `freed`'d with a call to the function `free`.\
 You should always `free` all `malloc`ed memory spaces.
+<br />
+
+### Valgrind
+We use [valgrind](https://valgrind.org/) for building dynamic memory analysis tools. There are Valgrind tools that can automatically detect many memory management and threading bugs, and profile programs in detail.\
+```
+#include <stdio.h>
+#include <stdlib.h>
+
+/**
+ * m - stores 3 int in a new allocated space in memory and prints the sum
+ * @n0: integer to store and print
+ * @n1: integer to store and print
+ * @n2: integer to store and print
+ *
+ * Return: nothing
+ */
+void m(int n0, int n1, int n2)
+{
+    int *t;
+    int sum;
+
+    t = malloc(sizeof(*t) * 3);
+    t[0] = n0;
+    t[1] = n1;
+    t[2] = n2;
+    sum = t[0] + t[1] + t[2];
+    printf("%d + %d + %d = %d\n", t[0], t[1], t[2], sum);
+}
+
+/**
+ * main - introduction to malloc and free
+ *
+ * Return: 0.
+ */
+int main(void)
+{
+    m(98, 402, -1024);
+    return (0);
+}
+julien@ubuntu:~/c/malloc$ gcc malloc_mem.c -o m
+julien@ubuntu:~/c/malloc$ valgrind ./m
+==3749== Memcheck, a memory error detector
+==3749== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
+==3749== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
+==3749== Command: ./m
+==3749== 
+98 + 402 + -1024 = -524
+==3749== 
+==3749== HEAP SUMMARY:
+==3749==     in use at exit: 12 bytes in 1 blocks
+==3749==   total heap usage: 2 allocs, 1 frees, 1,036 bytes allocated
+==3749== 
+==3749== LEAK SUMMARY:
+==3749==    definitely lost: 12 bytes in 1 blocks
+==3749==    indirectly lost: 0 bytes in 0 blocks
+==3749==      possibly lost: 0 bytes in 0 blocks
+==3749==    still reachable: 0 bytes in 0 blocks
+==3749==         suppressed: 0 bytes in 0 blocks
+==3749== Rerun with --leak-check=full to see details of leaked memory
+==3749== 
+==3749== For counts of detected and suppressed errors, rerun with: -v
+==3749== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+julien@ubuntu:~/c/malloc$ 
+```
