@@ -9,20 +9,20 @@
  */
 void *_calloc(unsigned int nmemb, unsigned int size)
 {
-	unsigned int *i, count;
+	unsigned int *i;
 
 	if (nmemb == 0 || size == 0)
 		return (NULL);
 
 	i = malloc(sizeof(unsigned int) / (size) * nmemb);
 
-	while (count < nmemb)
+	while (*i != '\0')
 	{
 		if (i == NULL)
 			return (NULL);
 
-		i[count] = 0;
-		count++;
+		i = 0;
+		i++;
 	}
 
 	if (i == NULL)
