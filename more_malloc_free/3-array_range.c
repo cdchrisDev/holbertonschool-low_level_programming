@@ -5,7 +5,7 @@
  * array_range - a func that create an array of int
  * @min: min range
  * @max: max range
- * Return: return values from min to max, if min > max, NULL. malloc fails, NULL.
+ * Return: return values from min to max, if min > max, NULL. fails, NULL.
  */
 int *array_range(int min, int max)
 {
