@@ -11,26 +11,19 @@ void *_calloc(unsigned int nmemb, unsigned int size)
 {
 	unsigned int count = 0;
 	char *i;
-	int k = 0;
 	
 	if (nmemb == 0 || size == 0)
 		return (NULL);
 
-	k = size * nmemb;
-
-	i = malloc(k);
-
-	while (count < nmemb)
-	{
-		if (i == NULL)
-			return (NULL);
-
-		i[count] = 0;
-		count++;
-	}
+	i = malloc(size * nmemb);
 
 	if (i == NULL)
 		return (NULL);
 
+	while (count < nmemb)
+	{
+		i[count] = 0;
+		count++;
+	}
 	return (i);
 }
