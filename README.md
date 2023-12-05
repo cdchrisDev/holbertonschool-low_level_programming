@@ -631,4 +631,9 @@ You can leave macro arguments empty; this is not an error to the preprocessor
      min()      error--> macro "min" requires 2 arguments, but only 1 given
      min(,,)    error--> macro "min" passed 3 arguments, but takes just 2
 ```
-Whitespace is not preprocessing token, so if a macro `foo` takes one argument `foo()` and `foo ( )` both supply and empty argument.
+Whitespace is not preprocessing token, so if a macro `foo` takes one argument `foo()` and `foo ( )` both supply and empty argument.\
+## Conditional Compilation
+They include `#if, #elif, #ifdef, #else, #ifndef`\
+* `#if, #elif, #else, #ifdef, #ifndef` must be terminated with a closing `#endif`\
+
+
