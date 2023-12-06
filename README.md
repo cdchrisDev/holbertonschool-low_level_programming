@@ -637,4 +637,87 @@ They include `#if, #elif, #ifdef, #else, #ifndef`\
 * `#if, #elif, #else, #ifdef, #ifndef` must be terminated with a closing `#endif`\
 
 
-This is the preprocessor project
+# C - Structure, typedef
+A structure is a user defined data type available in C that allows to combine data items of different kinds
+## Structure declaration
+* You can define a structure in the global scope of your program (outside of all your functions, just like the functions prototypes)
+* you can declare elements of your structure in its scope.
+```
+struct User
+{
+	char *name;
+	char *email;
+	int age;
+};
+
+int main(void)
+{
+	struct User user;
+
+	return (0);
+}
+```
+**You can access the elements of your structure by using the `'.'` symbol.
+```
+struct User
+{
+	char *name;
+	char *email
+	int age;
+};
+
+int main(void)
+{
+	struct User user;
+	user.name = "Foo bar";
+	user.email = "foo@hbtn.io";
+	user.age = 98;
+	return (0);
+}
+```
+## Pointers to structures
+To access elements of a pointer to a structure, you have to derefence the pointer and then access to the data using the `'.'` symbol<br />
+**BUT**<br />
+There is a simple way to do that, just by using '->' symbol. This symbol is equivalent to dereferencing + using `'.'`
+```
+struct User
+{
+	char *name;
+	char *email;
+	int age;
+};
+
+int main(void)
+{
+	struct User user;
+	struct User *ptr;
+
+	ptr = &user; //DEREF before access data with '.'
+	(*ptr).name = "Foor Bar";
+	ptr->email = "foo@hbtn.com"
+	return (0);
+}
+```
+## INIT
+There are three ways to initialize a structure. For the `struct` type
+```
+struct point {
+	int x;
+	int y;
+};
+```
+C89-style initializer are used when contiguous members may be given
+```
+//define a variable p of type point, and init its first two members in place
+struct point p = { 1, 2 };
+```
+for non contiguous or out of order member list, designated initializer style may be used
+```
+// define a var p of type point, and set members using designated init
+struct point p = { .y = 2, .x = 1 };
+```
+A thrid way of init a structure is to copy the value of an existing object of the same type
+```
+struct point q = p;
+```
+
