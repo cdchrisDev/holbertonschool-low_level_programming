@@ -5,7 +5,7 @@
  *
  * Return: the name of the compiled file
  */
-int main() 
+int main(void)
 {
 	printf(__BASE_FILE__);
 	putchar('\n');
