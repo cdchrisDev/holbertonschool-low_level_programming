@@ -720,4 +720,237 @@ A thrid way of init a structure is to copy the value of an existing object of th
 ```
 struct point q = p;
 ```
+## Pointers to struct
+pointer can be used to refer to a struct by its address. This is usuful for passing structs to a func. The pointer can be dereferenced using the `*` operator. The `->` operator dereferences the pointer to struct (left operand) and then accesses the value of a member of the struct (right operand)
+```
+struct point 
+{
+	int x;
+	int y;
+};
+struct point my_point = { 3, 7 }
+struct point *p = &my_point; // p is a pointer to my_point
+(*p).x = 8; // set the first member of the struct
+p -> x = 8; // equivalent method to set the first member of the struct
+```
+## typedef
+The C programming language provides a keyword called typedef, which you can use to give a type, a new name.
+```
+typedef unsigned char byte;
 
+int main(void)
+{
+	byte c; //after this type definition, the identifier 'byte'
+		//can be used as an abbreviation for the type
+	c = 200; //unsigned char, like in the example
+	return (0);
+}
+```
+**you can do it with structures to define a new data type**
+```
+struct Computer 
+{
+	char *name;
+	char *brand;
+}
+
+typedef struct Computer Computer
+
+typedef struct Computer
+{
+	char *name;
+	char *brand;
+} Computer;
+```
+**Then use that data type to define a structure variables directly like in the example**
+```
+typedef struct User
+{
+	char *name;
+	char *email;
+	int age;
+} user;
+
+int main(void)
+{
+	struct User user;
+	user user2;
+
+	return (0);
+}
+# C - Function pointers
+## We can have pointers to FUNCTIONS!!!
+```
+void fun(int a)
+{
+	printf("Value of a is %d\n", a);
+}
+
+int main(void)
+{	// Equal to: void (*fun_ptr)(int);
+	void (*fun_ptr)(int) = &fun; 
+	// and to: fun_ptr = &fun;
+	//invoking fun() using fun_ptr
+	(*fun_ptr)(10)
+
+	return (0);
+}
+```
+**Why do we need an extra bracket around function pointer like fun_ptr in above example**<br />
+If we remove bracket, then the expression `void (*fun_ptr)(int)` becomes `void *fun_ptr(int)` which its declaration for
+a func that returs void pointer
+### Few key points about func pointers
+1. Unlike normal pointer, a func pointer points to code, **NOT DATA**. Typically a func pointer stores the start of exec code
+2. Unlike normal pointers, we do not allocate de-allocate memory using func pointers
+3. A func name can also be used to get func addrs. example<br />
+	* in the below program, we have removed the addrs operator `&` in assigment. We have also changed func call by removing `*`. The program works
+```
+#include <stdio.h> 
+// A normal function with an int parameter 
+// and void return type 
+void fun(int a) 
+{ 
+    printf("Value of a is %d\n", a); 
+} 
+  
+int main() 
+{  
+    void (*fun_ptr)(int) = fun;  // & removed 
+  
+    fun_ptr(10);  // * removed 
+  
+    return 0; 
+}
+```
+4. like normal pointers, we can have an array of func pointers
+5. Func pointer can be used in place of switch case. For example, in below program, user is asked for a choice between 0 and 2 to do different task
+```
+#include <stdio.h> 
+void add(int a, int b) 
+{ 
+    printf("Addition is %d\n", a+b); 
+} 
+void subtract(int a, int b) 
+{ 
+    printf("Subtraction is %d\n", a-b); 
+} 
+void multiply(int a, int b) 
+{ 
+    printf("Multiplication is %d\n", a*b); 
+} 
+  
+int main() 
+{ 
+    // fun_ptr_arr is an array of function pointers 
+    void (*fun_ptr_arr[])(int, int) = {add, subtract, multiply}; 
+    unsigned int ch, a = 15, b = 10; 
+  
+    printf("Enter Choice: 0 for add, 1 for subtract and 2 "
+            "for multiply\n"); 
+    scanf("%d", &ch); 
+  
+    if (ch > 2) return 0; 
+  
+    (*fun_ptr_arr[ch])(a, b); 
+  
+    return 0; 
+}
+```
+6. Like normal data pointers, a func pointer can be passed as an argument and can also be returned from a func.
+	* This point in particular is very useful in C. In C, we can use function pointers to avoid code redundancy. For example a simple qsort() function can be used to sort arrays in ascending order or descending or by any other order in case of array of structures. Not only this, with function pointers and void pointers, it is possible to use qsort for any data type.
+```
+// A simple C program to show function pointers as parameter 
+#include <stdio.h> 
+  
+// Two simple functions 
+void fun1() { printf("Fun1\n"); } 
+void fun2() { printf("Fun2\n"); } 
+  
+// A function that receives a simple function 
+// as parameter and calls the function 
+void wrapper(void (*fun)()) 
+{ 
+    fun(); 
+} 
+  
+int main() 
+{ 
+    wrapper(fun1); 
+    wrapper(fun2); 
+    return 0; 
+}
+```
+**and example for qsort comparator**
+```
+#include <stdio.h> 
+#include <stdlib.h> 
+  
+// A sample comparator function that is used 
+// for sorting an integer array in ascending order. 
+// To sort any array for any other data type and/or 
+// criteria, all we need to do is write more compare 
+// functions.  And we can use the same qsort() 
+int compare (const void * a, const void * b) 
+{ 
+  return ( *(int*)a - *(int*)b ); 
+} 
+  
+int main () 
+{ 
+  int arr[] = {10, 5, 15, 12, 90, 80}; 
+  int n = sizeof(arr)/sizeof(arr[0]), i; 
+  
+  qsort (arr, n, sizeof(int), compare); 
+  
+  for (i=0; i<n; i++) 
+     printf ("%d ", arr[i]); 
+  return 0; 
+}
+```
+Similar to qsort(), we can write our own functions that can be used for any data type and can do different tasks without code redundancy. Below is an example search function that can be used for any data type. In fact we can use this search function to find close elements (below a threshold) by writing a customized compare function.
+
+```
+#include <stdio.h> 
+#include <stdbool.h> 
+  
+// A compare function that is used for searching an integer 
+// array 
+bool compare (const void * a, const void * b) 
+{ 
+  return ( *(int*)a == *(int*)b ); 
+} 
+  
+// General purpose search() function that can be used 
+// for searching an element *x in an array arr[] of 
+// arr_size. Note that void pointers are used so that 
+// the function can be called by passing a pointer of 
+// any type.  ele_size is size of an array element 
+int search(void *arr, int arr_size, int ele_size, void *x, 
+           bool compare (const void * , const void *)) 
+{ 
+    // Since char takes one byte, we can use char pointer 
+    // for any type/ To get pointer arithmetic correct, 
+    // we need to multiply index with size of an array 
+    // element ele_size 
+    char *ptr = (char *)arr; 
+  
+    int i; 
+    for (i=0; i<arr_size; i++) 
+        if (compare(ptr + i*ele_size, x)) 
+           return i; 
+  
+    // If element not found 
+    return -1; 
+} 
+  
+int main() 
+{ 
+    int arr[] = {2, 5, 7, 90, 70}; 
+    int n = sizeof(arr)/sizeof(arr[0]); 
+    int x = 7; 
+    printf ("Returned index is %d ", search(arr, n, 
+                               sizeof(int), &x, compare)); 
+    return 0; 
+}
+```
+7. Many object oriented features in C++ are implemented using function pointers in C.
