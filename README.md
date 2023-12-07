@@ -778,9 +778,10 @@ int main(void)
 
 	return (0);
 }
+```
 # C - Function pointers
 ## We can have pointers to FUNCTIONS!!!
-```
+
 void fun(int a)
 {
 	printf("Value of a is %d\n", a);
