@@ -42,7 +42,7 @@ dog_t *new_dog(char *name, float age, char *owner)
 	new__dog->age = age;
 	while (j > J)
 	{
-		new__dog->owner[J] = owner[j];
+		new__dog->owner[J] = owner[J];
 		J++;
 	}
 	return (new__dog);
