@@ -11,7 +11,7 @@
 dog_t *new_dog(char *name, float age, char *owner)
 {
 	dog_t *new__dog;
-	int j = 0, i = 0;
+	int j = 0, i = 0, J = 0, I = 0;
 	/* get the length of strings*/
 	while (name[i] != '\0')
 		i++;
@@ -34,16 +34,16 @@ dog_t *new_dog(char *name, float age, char *owner)
 		free(new__dog);
 		return (NULL);
 	} /* count in reverse and asign strings */
-	while (i != 0)
+	while (i > I)
 	{
-		new__dog->name[i] = name[i];
-		i--;
+		new__dog->name[I] = name[I];
+		I++;
 	}
 	new__dog->age = age;
-	while (j != 0)
+	while (j > J)
 	{
-		new__dog->owner[j] = owner[j];
-		j--;
+		new__dog->owner[J] = owner[j];
+		J++;
 	}
 	return (new__dog);
 }
