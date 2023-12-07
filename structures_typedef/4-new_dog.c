@@ -18,14 +18,14 @@ dog_t *new_dog(char *name, float age, char *owner)
 
 	while (owner[j] != '\0')
 		j++;
+
+	if (new__dog == NULL)
+		return (NULL);
 	/* new location for struct*/
 	new__dog = malloc(sizeof(dog_t));
 	/*new location for strings*/
 	new__dog->name = malloc(i + 1);
 	new__dog->owner = malloc(j + 1);
-
-	if (new__dog == NULL)
-                return (NULL);
         
 	if (new__dog->name == NULL || new__dog->owner == NULL)
         {
