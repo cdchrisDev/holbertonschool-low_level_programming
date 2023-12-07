@@ -941,8 +941,7 @@ int search(void *arr, int arr_size, int ele_size, void *x,
   
     // If element not found 
     return -1; 
-} 
-  
+}  
 int main() 
 { 
     int arr[] = {2, 5, 7, 90, 70}; 
