@@ -18,22 +18,22 @@ dog_t *new_dog(char *name, float age, char *owner)
 
 	while (owner[j] != '\0')
 		j++;
+	/* new location for struct*/
+	new__dog = (dog_t *)malloc(sizeof(dog_t));
 
 	if (new__dog == NULL)
 		return (NULL);
-	/* new location for struct*/
-	new__dog = malloc(sizeof(dog_t));
 	/*new location for strings*/
 	new__dog->name = malloc(i + 1);
 	new__dog->owner = malloc(j + 1);
-        
+
 	if (new__dog->name == NULL || new__dog->owner == NULL)
-        {
-                free(new__dog->name);
-                free(new__dog->owner);
-                free(new__dog);
-        }
-	
+	{
+		free(new__dog->name);
+		free(new__dog->owner);
+		free(new__dog);
+		return (NULL);
+	}
 	/* count in reverse and asign strings */
 	while (i > I)
 	{
