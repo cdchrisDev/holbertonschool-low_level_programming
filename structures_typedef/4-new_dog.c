@@ -36,17 +36,13 @@ dog_t *new_dog(char *name, float age, char *owner)
 	} /* count in reverse and asign strings */
 	while (i != 0)
 	{
-		new__dog->name = name;
-		new__dog->name++;
-		name++;
+		new__dog->name[i] = name[i];
 		i--;
 	}
 	new__dog->age = age;
 	while (j != 0)
 	{
-		new__dog->owner = owner;
-		new__dog->owner++;
-		owner++;
+		new__dog->owner[j] = owner[j];
 		j--;
 	}
 	return (new__dog);
