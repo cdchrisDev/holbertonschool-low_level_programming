@@ -10,44 +10,42 @@
  */
 dog_t *new_dog(char *name, float age, char *owner)
 {
+	int k, i = 0, j = 0;
+	char *NAME = &name[i], *OWNER = &owner[j];
+	/*new struct of type dog_t*/
 	dog_t *new__dog;
-	int j = 0, i = 0, J = 0, I = 0;
-	/* get the length of strings*/
+
+	if (name == NULL || age < 0 || owner == NULL)
+		return (NULL);
+
+	new__dog = malloc(sizeof(dog_t));
+
+	if (new__dog == NULL)
+		return (NULL);
+
 	while (name[i] != '\0')
 		i++;
 
 	while (owner[j] != '\0')
 		j++;
-	/* new location for struct*/
-	new__dog = (dog_t *)malloc(sizeof(dog_t));
 
-	if (new__dog == NULL)
-		return (NULL);
-	/*new location for strings*/
-	new__dog->name = malloc(i + 1);
-	new__dog->owner = malloc(j + 1);
+	new__dog->name = malloc(sizeof(char) * i);
+	new__dog->owner = malloc(sizeof(char) * j);
 
 	if (new__dog->name == NULL || new__dog->owner == NULL)
 	{
 		free(new__dog->name);
 		free(new__dog->owner);
 		free(new__dog);
+
 		return (NULL);
 	}
-	/* count in reverse and asign strings */
-	while (i > I)
-	{
-		new__dog->name[I] = name[I];
-		I++;
-	}
+	for (k = 0; k <= i; k++)
+		new__dog->name[k] = NAME[k];
+	for (k = 0; k <= j; k++)
+		new__dog->owner[k] = OWNER[k];
+
 	new__dog->age = age;
-	while (j > J)
-	{
-		new__dog->owner[J] = owner[J];
-		J++;
-	}
-	free(new__dog->name);
-	free(new__dog->owner);
-	free(new__dog);
+
 	return (new__dog);
 }
