@@ -733,6 +733,30 @@ struct point *p = &my_point; // p is a pointer to my_point
 (*p).x = 8; // set the first member of the struct
 p -> x = 8; // equivalent method to set the first member of the struct
 ```
+## Array of structs
+We can also declare a struct which is an array of struct like following:
+```
+int (*get_op_func(char *s))(int, int)
+{
+	op_t ops[] = {
+	{"+", op_add},
+	{"-", op_sub},
+	{"*", op_mul},
+	{"/", op_div},
+	{"%", op_mod},
+	{NULL, NULL}
+	};
+	int i;
+
+	i = 0;
+	while (ops[i].op != NULL)
+	{
+		if (*ops[i].op == *s && s[1] == '\0')
+			return (ops[i].f);
+
+		i++;
+	}
+```
 ## typedef
 The C programming language provides a keyword called typedef, which you can use to give a type, a new name.
 ```
@@ -954,3 +978,24 @@ int main()
 }
 ```
 7. Many object oriented features in C++ are implemented using function pointers in C.
+
+### function pointers use cases
+All of these cases are related to the concept that func pointers can be passed as arguments to other funcs, and then. A func that will recieve a func pointer as argument, can call back the func that this func will point to.<br />
+**BUT**, What this mean?
+```
+#include <stdio.h>
+void A()
+{
+	printf("hello");
+}
+void B(void (*ptr)()) //func pointer as argument
+{
+	ptr(); //call-back func that "ptr" points to
+}
+int main()
+{
+	B(A); //A is callback func.
+}
+```
+When ref to a func is passed by another func, that particular func is called a `callback` func, in this case is `A()`<br />
+
