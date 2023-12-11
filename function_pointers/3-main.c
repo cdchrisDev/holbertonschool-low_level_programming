@@ -3,8 +3,8 @@
 #include <stdio.h>
 /**
  * main - entry point
- *
- *
+ * @argc: name of program
+ * @argv: arguments for OP
  * Return: op
  */
 int main(int argc, char *argv[])
@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
 
 	op = argv[2];
 
-	if (argc > 4 || argc < 4)
+	if (argc != 4)
 	{
 		printf("Error\n");
 		exit(98);

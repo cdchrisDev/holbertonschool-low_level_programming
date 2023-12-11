@@ -4,8 +4,6 @@
 /**
  * get_op_func - a func to select the correct OP
  * @s: string
- * @int: int
- * @int: int
  * Return: OP
  */
 
