@@ -11,6 +11,15 @@ The library fucn `printf` is an example of another class of function where varia
 	1. Initialize an argument pointer variable of type `va_list` using `va_start`. The argument pointer when initialized points to the first optional argument.
 	2. You access the opional arguments by successive calls to `va_arg` The first call to `va_arg` gives you the first optional argument, the next call gives you the second, and so on.
 	3. You indicate that you are finished with the argument pointer variale by calling `va_end`
-* Declare the function as variadic, using a prototype with allipsis `...` in all the files which call it. See [Syntxt for Variable Arguments](https://www.gnu.org/software/libc/manual/html_node/Variadic-Prototypes.html).
+* Declare the function as variadic, using a prototype with allipsis `...` in all the files which call it. See [Syntax for Variable Arguments](https://www.gnu.org/software/libc/manual/html_node/Variadic-Prototypes.html).<br />
+	* A func that accepts a variable number of arguments must be declared with a prototype that says so. You write the fixed arguments as usual, and then tack on `...` to indicate the possibility of additional arguments. The syxtax of ISO C requires at least one fixed argument before the `...`:
+```
+int func (const char *a, int b, ...)
+{
+	
+}
+```
+defines a `func` which returns an int and takes two required arguments, a `const char *` and an `int`. These are followed by any number of anonymous arguments<br />
+**Portability Note:** For some C compilers, the last required argument must not be declared `register` i the func definition. Furthermore, this argument’s type must be self-promoting: that is, the default promotions must not change its type. This rules out array and function types, as well as float, char (whether signed or not) and short int (whether signed or not). This is actually an ISO C requirement.
 * Call the func by writing the fixed arguments followed by the additional variable arguments See [Calling variadic Func](https://www.gnu.org/software/libc/manual/html_node/Calling-Variadics.html).
-
+	* In principle, functions that are defined to be variadic must also be declared to be variadic using a function prototype whenever you call them.
