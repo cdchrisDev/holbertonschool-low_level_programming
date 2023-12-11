@@ -10,15 +10,17 @@
 int main(int argc, char *argv[])
 {
 	char *op;
-	int n1 = atoi(argv[1]), n2  = atoi(argv[3]);
-
-	op = argv[2];
+	int n1, n2;
 
 	if (argc != 4)
 	{
 		printf("Error\n");
 		exit(98);
 	}
+
+	n1 = atoi(argv[1]);
+	n2 = atoi(argv[3]);
+	op = argv[2];
 
 	if (op == NULL)
 	{
