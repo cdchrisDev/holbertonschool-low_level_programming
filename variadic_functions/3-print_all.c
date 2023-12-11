@@ -13,11 +13,9 @@ void print_all(const char * const format, ...)
 	char c;
 	float f;
 	char *s;
-
 	va_list MoArg;
 
 	va_start(MoArg, format);
-
 	while (format && format[cnt] != '\0')
 	{
 		switch (format[cnt])
@@ -47,7 +45,6 @@ void print_all(const char * const format, ...)
 		}
 		if (format[cnt + 1])
 			printf(", ");
-
 		cnt++;
 	}
 	va_end(MoArg);
