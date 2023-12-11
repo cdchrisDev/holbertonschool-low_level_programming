@@ -34,10 +34,7 @@ void print_all(const char * const format, ...)
 				break;
 			case 's':
 				s = va_arg(MoArg, char*);
-				if (s == NULL)
-					printf("(nil)");
-
-				printf("%s", s);
+				printf("%s", s ? s : "(nil)");
 				break;
 			default:
 				cnt++;
