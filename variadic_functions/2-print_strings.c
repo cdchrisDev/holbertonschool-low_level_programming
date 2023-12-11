@@ -19,11 +19,14 @@ void print_strings(const char *separator, const unsigned int n, ...)
 		{	/* Convert to char from Int*/
 			char *c = va_arg(MoArg, char *);
 
-			if (1 + i == n || separator == NULL)
+			if (c != NULL)
 				printf("%s", c);
-			else if (c != NULL)
-				printf("%s%s", c, separator);
+			else
+				printf("(nil)");
 
+
+			if (separator != NULL && i < n - 1)
+				printf("%s", separator);
 		}
 		va_end(MoArg);
 		putchar('\n');
