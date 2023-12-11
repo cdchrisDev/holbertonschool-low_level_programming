@@ -23,7 +23,8 @@ void print_strings(const char *separator, const unsigned int n, ...)
 				printf("%s", c);
 			else if (c != NULL)
 				printf("%s%s", c, separator);
-			else
+
+			if (c == NULL)
 				printf("(nil)");
 		}
 		va_end(MoArg);
