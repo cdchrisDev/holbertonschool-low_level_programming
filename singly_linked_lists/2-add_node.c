@@ -17,8 +17,10 @@ list_t *add_node(list_t **head, const char *str)
 
 	new->str = strdup(str); /* new alloc for string */
 	if (new->str == NULL)
+	{
+		free(new);
 		return (NULL);
-
+	}
 	new->len = strlen(str);
 	new->next = *head; /* set next node to head */
 	*head = new; /* head is a pointer to next node*/
