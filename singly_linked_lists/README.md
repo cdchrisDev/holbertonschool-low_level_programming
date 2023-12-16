@@ -25,27 +25,27 @@ int main(void)
     list_t hello = {"World", 5, NULL};
     size_t n;
 
-    head = &hello;
-    new = malloc(sizeof(list_t));
+    head = &hello; //first node
+    new = malloc(sizeof(list_t)); //new space alloc for next node "new"
     if (new == NULL)
-    {
+    { //checking for errors 
         printf("Error\n");
         return (1);
     }
-    new->str = strdup("Hello");
+    new->str = strdup("Hello"); //alloc mem for str in next node "new"
     new->len = 5;
-    new->next = head;
-    head = new;
+    new->next = head; //pointer next to next node in new = head, so new jump to INIT node
+    head = new; // and head jump to the next node "new"
     n = print_list(head);
     printf("-> %lu elements\n", n);
 
     printf("\n");
-    free(new->str);
-    new->str = NULL;
+    free(new->str); // free string of the next node 
+    new->str = NULL; // set the string next node to NULL
     n = print_list(head);
     printf("-> %lu elements\n", n);
 
-    free(new);
+    free(new); //free the struct 
     return (0);
 }
 julien@ubuntu:~/Singly linked lists$ gcc -Wall -pedantic -Werror -Wextra -std=gnu89 0-main.c 0-print_list.c -o a
@@ -58,9 +58,9 @@ julien@ubuntu:~/Singly linked lists$ ./a
 [5] World
 -> 2 elements
 julien@ubuntu:~/Singly linked lists$ 
-
-SOLVED->
-
+```
+## SOLVED
+```
 #include "lists.h"
 #include <stdarg.h>
 #include <stdio.h>
@@ -72,14 +72,14 @@ SOLVED->
  */
 size_t print_list(const list_t *h)
 {
-	size_t i;
+	size_t i; // node count
 	unsigned int n;
 	char *s;
 
 	i = 0;
 
 	while (h != NULL)
-	{
+	{	// Looping the same node until is NULL
 		i++;
 		n = h->len;
 		s = h->str;
