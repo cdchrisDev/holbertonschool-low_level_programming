@@ -10,13 +10,12 @@
  */
 dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 {
-	unsigned int i = 0;
 	dlistint_t *new, *p = *h; /* new node, pointer equal to h*/
 
 	if (idx == 0)	/* if index 0, use function to add at beggining*/
 		return (add_dnodeint(h, n));
 
-	for (; i != idx; i++)
+	for (; idx != 1; idx--)
 	{	/* Looping until reach the expected list position*/
 		p = p->next;
 		if (p == NULL)
