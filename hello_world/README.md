@@ -314,3 +314,88 @@ int main(void)
 	return (0);
 }
 ```
+## 8. Write a script that generates the assembly code (Intel syntax) of a C code and save it in an output file.
+<br />
+
+* The C file name will be saved in the variable `$CFILE`.
+* The output file should be named the same as the C file, but with the extension `.s` instead of `.c`.
+	* **Example**: if the C file is `main.c`, the output file should be `main.s`
+```
+julien@ubuntu:~/c/$ export CFILE=main.c
+julien@ubuntu:~/c/$ cat main.c
+#include <stdio.h>
+
+/**
+ * main - Entry point
+ *
+ * Return: Always 0 (Success)
+ */
+int main(void)
+{
+    return (0);
+}
+julien@ubuntu:~/c/$ ./100-intel 
+julien@ubuntu:~/c/$ cat main.s
+    .file   "main.c"
+    .intel_syntax noprefix
+    .text
+    .globl  main
+    .type   main, @function
+main:
+.LFB0:
+    .cfi_startproc
+    push    rbp
+    .cfi_def_cfa_offset 16
+    .cfi_offset 6, -16
+    mov rbp, rsp
+    .cfi_def_cfa_register 6
+    mov eax, 0
+    pop rbp
+    .cfi_def_cfa 7, 8
+    ret
+    .cfi_endproc
+.LFE0:
+    .size   main, .-main
+    .ident  "GCC: (Ubuntu 5.4.0-6ubuntu1~16.04.2) 5.4.0 20160609"
+    .section    .note.GNU-stack,"",@progbits
+julien@ubuntu:~/c/$ 
+```
+**SOLVED**
+```
+#!/bin/bash
+gcc -S -masm=intel $CFILE
+```
+## 9. Write a C program that prints exactly `and that piece of art is useful"- Dora Korpar, 2015-10-19`, followed by a new line, to the standard error.
+* You are not allowed to use any functions listed in the NAME Section of the man(3) `printf` or man(3) `puts`
+* Your program should return 1
+* Your program should compile without any warnings when using the `Wall gcc` option
+```
+julien@ubuntu:~/c/$ gcc -Wall -Werror -Wextra -pedantic -std=gnu89 -o quote 101-quote.c
+julien@ubuntu:~/c/$ ./quote
+and that piece of art is useful" - Dora Korpar, 2015-10-19
+julien@ubuntu:~/c/$ echo $?
+1
+julien@ubuntu:~/c/$ ./quote 2> q
+julien@ubuntu:~/c/$ cat q
+and that piece of art is useful" - Dora Korpar, 2015-10-19
+julien@ubuntu:~/c/$ grep printf < 101-quote.c
+julien@ubuntu:~/c/$ grep put < 101-quote.c
+julien@ubuntu:~/c/$ 
+```
+**SOLVED**
+```
+#include <stdio.h>
+/**
+ * main - entry point
+ * Return: 1
+ */
+int main(void)
+{
+	char *c = "and that piece of art is useful\" - Dora Korpar, 2015-10-19\n";
+
+	while (*c)
+		putchar(*c++);
+
+	return (1);
+}
+```
