@@ -13,7 +13,7 @@
 ## Learning Objectives
 ### General
 * Why C programming is awesome
-	* Because almost every electronic device in the world was coded using C programming language
+	* Because almost every electronic device in the world was coded using C programming language\
 * Who invented C
 	* Dennis MacAlistair Ritchie (September 9, 1941 – c. October 12, 2011)
 * Who are Dennis Ritchie, Brian Kernighan and Linus Torvalds
