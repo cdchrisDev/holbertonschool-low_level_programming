@@ -1,5 +1,12 @@
 # This is the hash tables project
 
+**Resources**
+* [What is a HashTable Data Structure - Introduction to Hash Tables , Part 0](https://www.youtube.com/watch?v=MfhjkfocRR0&ab_channel=PaulProgramming)
+
+* [Hash function](https://en.wikipedia.org/wiki/Hash_function)
+
+* [Hash table](https://en.wikipedia.org/wiki/Hash_table)
+
 ## What is a Hash Function?<br />
 a **hash function** is any function that can be used to map data of arbitrary size to fixed-size values, though there are some hash functions that support variable length output. The values returned by a hash function are called *Hash Values*, *Hash Codes*, *digest* or simply *hashes* the values are usually used to index a fixed-storage addressing.
 
