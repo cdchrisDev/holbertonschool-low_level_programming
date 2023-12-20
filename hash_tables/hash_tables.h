@@ -4,6 +4,7 @@
 /**
  * struct hash_node_s - node of a hash table
  * The key is unique in the HashTable
+ * @key: str
  * @value: The value corresponding to a key
  * @next: A pointer to the next node of the list
  */
