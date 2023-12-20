@@ -1,6 +1,6 @@
 # This is the hash tables project
 
-**Resources**
+### Resources
 * [What is a HashTable Data Structure - Introduction to Hash Tables , Part 0](https://www.youtube.com/watch?v=MfhjkfocRR0&ab_channel=PaulProgramming)
 
 * [Hash function](https://en.wikipedia.org/wiki/Hash_function)
