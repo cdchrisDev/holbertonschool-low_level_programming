@@ -38,3 +38,113 @@ Hash tables offer efficient data storage and retrieval, but they come with some 
 ## What are the most use cases?|<br />
 Probably the most common use for hash tables is databases. To retrieve and increment through data in a database in a performant way, we need some way to identify it uniquely, and we need some way to index it<br />
 
+# Task
+## Data structures
+**Please, use these data structures for this project:**
+```
+/**
+ * struct hash_node_s - Node of a hash table
+ *
+ * @key: The key, string
+ * The key is unique in the HashTable
+ * @value: The value corresponding to a key
+ * @next: A pointer to the next node of the List
+ */
+typedef struct hash_node_s
+{
+     char *key;
+     char *value;
+     struct hash_node_s *next;
+} hash_node_t;
+
+/**
+ * struct hash_table_s - Hash table data structure
+ *
+ * @size: The size of the array
+ * @array: An array of size @size
+ * Each cell of this array is a pointer to the first node of a linked list,
+ * because we want our HashTable to use a Chaining collision handling
+ */
+typedef struct hash_table_s
+{
+     unsigned long int size;
+     hash_node_t **array;
+} hash_table_t;
+```
+## 0. Write a function that creates a hash table.
+
+* Prototype: `hash_table_t *hash_table_create(unsigned long int size);`
+	* where size is the size of the array
+* Returns a pointer to the newly created hash table
+* If something went wrong, your function should return `NULL`
+```
+julien@ubuntu:~/Hash tables$ cat 0-main.c 
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include "hash_tables.h"
+
+/**
+ * main - check the code for
+ *
+ * Return: Always EXIT_SUCCESS.
+ */
+int main(void)
+{
+    hash_table_t *ht;
+
+    ht = hash_table_create(1024);
+    printf("%p\n", (void *)ht);
+    return (EXIT_SUCCESS);
+}
+julien@ubuntu:~/Hash tables$ gcc -Wall -pedantic -Werror -Wextra -std=gnu89 0-main.c 0-hash_table_create.c -o a
+julien@ubuntu:~/Hash tables$ ./a 
+0x238a010
+julien@ubuntu:~/Hash tables$ valgrind ./a
+==7602== Memcheck, a memory error detector
+==7602== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==7602== Using Valgrind-3.10.1 and LibVEX; rerun with -h for copyright info
+==7602== Command: ./a
+==7602== 
+0x51fc040
+==7602== 
+==7602== HEAP SUMMARY:
+==7602==     in use at exit: 8,208 bytes in 2 blocks
+==7602==   total heap usage: 2 allocs, 0 frees, 8,208 bytes allocated
+==7602== 
+==7602== LEAK SUMMARY:
+==7602==    definitely lost: 16 bytes in 1 blocks
+==7602==    indirectly lost: 8,192 bytes in 1 blocks
+==7602==      possibly lost: 0 bytes in 0 blocks
+==7602==    still reachable: 0 bytes in 0 blocks
+==7602==         suppressed: 0 bytes in 0 blocks
+==7602== Rerun with --leak-check=full to see details of leaked memory
+==7602== 
+==7602== For counts of detected and suppressed errors, rerun with: -v
+==7602== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+julien@ubuntu:~/Hash tables$
+```
+**SOLVED**
+```
+#include "hash_tables.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+/**
+ * hash_table_create - a func that creates a hash table.
+ * @size: is the size of the array
+ * Return: pointer to created hash table, NULL if goes wrong
+ */
+hash_table_t *hash_table_create(unsigned long int size)
+{
+	hash_table_t *ht = malloc(sizeof(hash_table_t));
+
+	if (ht == NULL)
+		return (NULL);
+
+	ht->size = size;
+	ht->array = malloc(sizeof(unsigned long int) * size);
+	/* Calloc init in 0 */
+	return (ht);
+}
+```
