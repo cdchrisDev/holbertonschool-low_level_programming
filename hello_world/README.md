@@ -15,26 +15,47 @@
 * Why C programming is awesome
 	* Because almost every electronic device in the world was coded using C programming language
 <br />
+
 * Who invented C
 	* Dennis MacAlistair Ritchie (September 9, 1941 – c. October 12, 2011)
+<br />
+
 * Who are Dennis Ritchie, Brian Kernighan and Linus Torvalds
 	* The people behind the bases of the Unix Fundation 
+<br />
+
 * What happens when you type `gcc main.c`
 	* It compiles the file `main.c`
+<br />
+
 * What is `main`
 	* The entry point of our program, it looks for it when it starts
+<br />
+
 * How to print text using `printf`, `puts` and `putchar`
 	* `printf("%[format]", Var)`, `puts(Var)` and `putchar('a')`
+<br />
+
 * How to get the size of a specific type using the unary operator `sizeof`
 	* `sizeof(type)` where `type`is a var or int, float, char, etc...
+<br />
+
 * How to compile using `gcc`
 	* `gcc FILE [option] OUT_FILE_NAME`
+<br />
+
 * What is the default program name when compiling with `gcc`
 	* a.out
+<br />
+
 * What is the official C coding style and how to check your code with `betty-style`
 	* `betty FILE.c`
+<br />
+
 * How to find the right header to include in your source code when using a stadard library function
 	* READ THE FRIENDLY MANUAL (RTFM) `man $nameOfFunction`
+<br />
+
 * How does the `main` function influence the return value of the program
 	* shows how the program exited.
 
