@@ -311,3 +311,325 @@ void more_numbers(void)
 * Where `n` is the number of times the character _ should be printed
 * The line should end with a `\n`
 * If `n` is `0` or less, the function should only print `\n`
+```
+julien@ubuntu:~/$ cat 6-main.c
+#include "main.h"
+
+/**
+ * main - check the code
+ *
+ * Return: Always 0.
+ */
+int main(void)
+{
+    print_line(0);
+    print_line(2);
+    print_line(10);
+    print_line(-4);
+    return (0);
+}
+julien@ubuntu:~/$ gcc -Wall -pedantic -Werror -Wextra -std=gnu89 _putchar.c 6-main.c 6-print_line.c -o 6-lines
+julien@ubuntu:~/$ ./6-lines | cat -e
+$
+__$
+__________$
+$
+julien@ubuntu:~/$ 
+```
+**SOLVED**
+```
+#include "main.h"
+/**
+ * print_line - write a straight line
+ * @n: a int
+ * Return: a drew line
+ */
+void print_line(int n)
+{
+	while (n > 0)
+	{
+		_putchar('_');
+		n--;
+	}
+
+	_putchar('\n');
+}
+```
+## 7. Write a function that draws a diagonal line on the terminal.
+
+* Prototype: `void print_diagonal(int n);`
+* You can only use `_putchar` function to print
+* Where `n` is the number of times the character `\` should be printed
+* The diagonal should end with a `\n`
+* If `n` is `0` or less, the function should only print a `\n`
+```
+julien@ubuntu:~/$ cat 7-main.c
+#include "main.h"
+
+/**
+ * main - check the code
+ *
+ * Return: Always 0.
+ */
+int main(void)
+{
+    print_diagonal(0);
+    print_diagonal(2);
+    print_diagonal(10);
+    print_diagonal(-4);
+    return (0);
+}
+julien@ubuntu:~/$ gcc -Wall -pedantic -Werror -Wextra -std=gnu89 _putchar.c 7-main.c 7-print_diagonal.c -o 7-diagonals
+julien@ubuntu:~/$ ./7-diagonals | cat -e
+$
+\$
+ \$
+\$
+ \$
+  \$
+   \$
+    \$
+     \$
+      \$
+       \$
+        \$
+         \$
+$
+julien@ubuntu:~/$ 
+```
+**SOLVED**
+```
+#include "main.h"
+/**
+ * print_diagonal - print a diagonal line on the terminal
+ * @n: a int
+ * Return: void
+ */
+void print_diagonal(int n)
+{
+	int j, i;
+
+	if (n <= 0)
+		_putchar('\n');
+
+
+	for (i = 0; i < n; i++)
+	{
+		for (j = 0; j < n; j++)
+		{
+			if (i == j)
+			{
+				_putchar('\\');
+				_putchar('\n');
+				break;
+			}
+			else
+			{
+				_putchar(' ');
+			}
+		}
+	}
+}
+```
+## 8. Write a function that prints a square, followed by a new line.
+
+* Prototype: `void print_square(int size);`
++ You can only use `_putchar` function to print
+* Where `size` is the size of the square
+* If `size` is `0` or less, the function should print only a new line
++ Use the character `#` to print the square
+```
+julien@ubuntu:~/$ cat 8-main.c 
+#include "main.h"
+
+/**
+ * main - check the code
+ *
+ * Return: Always 0.
+ */
+int main(void)
+{
+    print_square(2);
+    print_square(10);
+    print_square(0);
+    return (0);
+}
+
+julien@ubuntu:~/$ gcc -Wall -pedantic -Werror -Wextra -std=gnu89 _putchar.c 8-main.c 8-print_square.c -o 8-squares
+julien@ubuntu:~/$ ./8-squares 
+##
+##
+##########
+##########
+##########
+##########
+##########
+##########
+##########
+##########
+##########
+##########
+```
+**SOLVED**
+```
+#include "main.h"
+/**
+ * print_square -  a func to print a square
+ * @size: a square
+ * Return: a square
+ *
+ */
+void print_square(int size)
+{
+	int i, j;
+
+	if (size <= 0)
+		_putchar('\n');
+
+	for (i = 0; i < size; i++)
+	{
+		for (j = 0; j < size; j++)
+		{
+			if (size > 0)
+				_putchar('#');
+		}
+		_putchar('\n');
+	}
+}
+```
+## 9. The “Fizz-Buzz test” is an interview question designed to help filter out the 99.5% of programming job candidates who can’t seem to program their way out of a wet paper bag.
+
+Write a program that prints the numbers from `1` to `100`, followed by a new line. But for multiples of three print `Fizz` instead of the number and for the multiples of five print `Buzz`. For numbers which are multiples of both three and five print `FizzBuzz`.
+
+* Each number or word should be separated by a space
+* You are allowed to use the standard library
+```
+julien@ubuntu:~/$ gcc -Wall -pedantic -Werror -Wextra -std=gnu89 9-fizz_buzz.c -o 9-fizz_buzz
+julien@ubuntu:~/$ ./9-fizz_buzz 
+1 2 Fizz 4 Buzz Fizz 7 8 Fizz Buzz 11 Fizz 13 14 FizzBuzz 16 17 Fizz 19 Buzz Fizz 22 23 Fizz Buzz 26 Fizz 28 29 FizzBuzz 31 32 Fizz 34 Buzz Fizz 37 38 Fizz Buzz 41 Fizz 43 44 FizzBuzz 46 47 Fizz 49 Buzz Fizz 52 53 Fizz Buzz 56 Fizz 58 59 FizzBuzz 61 62 Fizz 64 Buzz Fizz 67 68 Fizz Buzz 71 Fizz 73 74 FizzBuzz 76 77 Fizz 79 Buzz Fizz 82 83 Fizz Buzz 86 Fizz 88 89 FizzBuzz 91 92 Fizz 94 Buzz Fizz 97 98 Fizz Buzz
+julien@ubuntu:~/$ 
+```
+**SOLVED**
+```
+#include <stdio.h>
+/**
+ * main - entry point
+ * a program to print FizzBuzz depending its multiply
+ * Return: 0
+ */
+
+int main(void)
+{
+	int i;
+
+	for (i = 1; i <= 100; i++)
+	{
+		if (i % 3 == 0)
+		{
+			if (i % 15 == 0)
+				printf("FizzBuzz ");
+			else
+				printf("Fizz ");
+		}
+
+		else if (i % 5 == 0)
+		{
+			if (i == 100)
+			{
+				printf("Buzz");
+				putchar('\n');
+			}
+			else
+				printf("Buzz ");
+		}
+		else
+			printf("%d ", i);
+
+	}
+
+	return (0);
+}
+```
+## 10. Write a function that prints a triangle, followed by a new line.
+
+* Prototype: `void print_triangle(int size);`
+* You can only use `_putchar` function to print
+* Where `size` is the size of the triangle
+* If `size` is `0` or less, the function should print only a new line
+* Use the character `#` to print the triangle
+```
+julien@ubuntu:~/$ cat 10-main.c 
+#include "main.h"
+
+/**
+ * main - check the code
+ *
+ * Return: Always 0.
+ */
+int main(void)
+{
+    print_triangle(2);
+    print_triangle(10);
+    print_triangle(1);
+    print_triangle(0);
+    return (0);
+}
+julien@ubuntu:~/$ gcc -Wall -pedantic -Werror -Wextra -std=gnu89 _putchar.c 10-main.c 10-print_triangle.c -o 10-triangles
+julien@ubuntu:~/$ ./10-triangles 
+ #
+##
+         #
+        ##
+       ###
+      ####
+     #####
+    ######
+   #######
+  ########
+ #########
+##########
+#
+
+julien@ubuntu:~/$ ./10-triangles | tr ' ' . | cat -e
+.#$
+##$
+.........#$
+........##$
+.......###$
+......####$
+.....#####$
+....######$
+...#######$
+..########$
+.#########$
+##########$
+#$
+$
+julien@ubuntu:~/$
+```
+**SOLVED**
+```
+#include "main.h"
+/**
+ * print_triangle - a func to print triangles by giving a num
+ * @size: where is the num of triangle size
+ * Return: tri
+ */
+void print_triangle(int size)
+{
+	int j, i, jj;
+
+	if (size <= 0)
+		_putchar('\n');
+
+	for (j = 1; j <= size; j++)
+	{
+		for (jj = size - j; jj > 0; jj--)
+			_putchar(' ');
+		for (i = 1; i <= j; i++)
+			_putchar('#');
+
+		_putchar('\n');
+	}
+}
+```
