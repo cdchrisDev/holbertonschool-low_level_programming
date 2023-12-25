@@ -20,6 +20,7 @@
 	* Iterative algorithms: These algorithms use loops to iterate through a problem and solve it without recursion. ...
 	* Dynamic programming: This technique involves breaking a problem down into smaller subproblems and solving them in a bottom-up manner, without recursion.
 <br />
+
 ## 0. Write a function that prints a string, followed by a new line.
 
 * Prototype: `void _puts_recursion(char *s);`
