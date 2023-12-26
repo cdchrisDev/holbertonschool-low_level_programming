@@ -1,11 +1,11 @@
-## C - argc, argv
+# C - argc, argv
 ### Resources:
 * [Arguments to main](https://intranet.hbtn.io/rltoken/ro9HSskzyAhNpzdcVhdVWw)
 * [argc and argv](https://intranet.hbtn.io/rltoken/zjdRHZTL-ImDCnGuMfHYfA)
 * [What does argc and argv mean?](https://intranet.hbtn.io/rltoken/RT0y1HPM-AChT_JQedpdaA)
 * [how to compile with unused variables](https://intranet.hbtn.io/rltoken/GvQNF9qKoUuY1t0U1AsetA)
 ## Learning Objevtives
-## C - argc and argv (argument count and argument vector)
+# C - argc and argv (argument count and argument vector)
 **Arguments to main**\
 provides a usuful oportunity to give parameters to programs. Typically, this facility is used to direct the way the program goes about it's task. It's particularly common to provide file names to a program through is arguments.\
 
