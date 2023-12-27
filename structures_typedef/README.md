@@ -1,4 +1,12 @@
 # C - Structure, typedef
+### Resources
+* [0x0d. Structures.pdf](https://intranet.hbtn.io/projects/2164#:~:text=0x0d.%20Structures.pdf)
+* [struct (C programming language)](https://intranet.hbtn.io/rltoken/VujS8Eo0cgoOhd1wpZCSwg)
+* [Documentation: structures](https://intranet.hbtn.io/rltoken/d2uohXRWLbqykxIrbJawpg)
+* [0x0d. Typedef and structures.pdf](https://intranet.hbtn.io/rltoken/haWQ15L2jOBBhM_AK97kww)
+* [typedef](https://intranet.hbtn.io/rltoken/6TX-aFGQs5sAtdtyXBnjyQ)
+* **Programming in C** by Stephen Kochan - *Chapter 8, Working with Structures p 164-189*
+* [The Lost Art of C Structure Packing](https://intranet.hbtn.io/rltoken/qxIHARCFIPU4IGX12WVa0g) *Advance*
 ## Learning Objectives
 * What are structures, when, why and how to use them
 	* A structure is a user defined data type available in C that allows to combine data items of different kinds.<br /> It is used when we want to structure data or just don't know how mucho we're gonna add to our functions.<br /> As standar data types, after a struct has been define we can create an instance of the sabe struct<br /> `struct NAME`
