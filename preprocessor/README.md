@@ -8,14 +8,62 @@
 * [include guard](https://intranet.hbtn.io/rltoken/X5wONSZbaYNg_7KTIRarFA)
 * [Common predefined Macros](https://intranet.hbtn.io/rltoken/RTJL9iYjkXCAX1czVTthKw)
 ## Learning Objectives
-* What are macros and how to use them
-	* A macro is an action or a set of actions that you can run as many times as you want. When you create a macro, you are recording your mouse clicks and keystrokes. After you create a macro, you can edit it to make minor changes to the way it works.<br />
-
-* What are the most common predefined macros
-	* [These](https://gcc.gnu.org/onlinedocs/cpp/Common-Predefined-Macros.html)<br />
-
-* How to include guard your header files
-	* `#ifndef HEADER_FILE`<br /> `define HEADER_FILE`<br /> `#endif`
+# Object-like Macros
+a simple identifier which will be replaced by code. They're used to create symbolic names to numeric constats<br />
+Using `#define` keyword and then any name (ussually on UPPPERCASE) we create a macro<br />
+`#define BUFFER_SIZE 1024` --> defines macro name as `BUFFER_SIZE` as an abbreviation for the token 1024<br />
+<br />
+`(foo = (char *)malloc(BUFFER_SIZE)) == (foo = (char *)malloc(1024));`<br />
+<br />
+The macro's body end at the end of the `#define` line. You may continue the definition onto multiple lines, if necessary, using backslash-newline<br />
+```
+#define NUMBERS 1, \
+		2, \
+		3
+int x[] = { NUMBERS };
+	=> int x[] = { 1, 2, 3};
+```
+When the preproessor expands a macro name, the macro's expansion the macro invocation, then the expansion is examinated for more macros to expand
+```
+#define TABLESIZE BUFSIZE
+#define BUFSIZE 1024
+```
+## Macro arguments
+To define a macro that uses arguments, insert them between the pair of paretheses in the macro definition\
+As an example, here is a macro that computes the minimum of two numeric values, as it is defined in many C programs, and some uses.
+```
+#define min(x, y)	((x) < (y) ? (x) : (y))
+x = min(a, b);  ==> x = ((a) < (b) ? (a) : (B));
+y = min(1, 2);  ==> y = ((1) < (2) ? (1) : (2));
+z = min(a + 28, *p); ==> z = ((a + 28) < (*p) ? (a + 28) : (*p));
+```
+there is no requirement for square brackets or braces to balance, and they do not prevent a comma from separating arguments\
+`macro (array[x = y, x +  1])`<br />
+<br />
+For example, `min (min (a, b) c)` if first expanded to\
+`min (((a) < (b) ? (a) : (b)), (c))`<br />
+<br />
+and then to
+```
+((((a) < (b) ? (a) : (b))) < (c))
+? (((a) < (b) ? (a) : (b)))
+: (c))
+```
+(Line breaks shown here for clarity would not actually be generated)<br />
+You can leave macro arguments empty; this is not an error to the preprocessor
+```
+     min(, b)        ==> ((   ) < (b) ? (   ) : (b))
+     min(a, )        ==> ((a  ) < ( ) ? (a  ) : ( ))
+     min(,)          ==> ((   ) < ( ) ? (   ) : ( ))
+     min((,),)       ==> (((,)) < ( ) ? ((,)) : ( ))
+     
+     min()      error--> macro "min" requires 2 arguments, but only 1 given
+     min(,,)    error--> macro "min" passed 3 arguments, but takes just 2
+```
+Whitespace is not preprocessing token, so if a macro `foo` takes one argument `foo()` and `foo ( )` both supply and empty argument.\
+## Conditional Compilation
+* They include `#if, #elif, #ifdef, #else, #ifndef`
+* `#if, #elif, #else, #ifdef, #ifndef` must be terminated with a closing `#endif`
 ## 0. Create a header file that defines a macro named `SIZE` as an abbreviation for the token `1024`.
 ```
 julien@ubuntu:~/0x0c. macro, structures$ cat 0-main.c
