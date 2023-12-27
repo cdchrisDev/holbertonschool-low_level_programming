@@ -13,6 +13,7 @@ dog_t *new_dog(char *name, float age, char *owner)
 	int k, i = 0, j = 0;
 	/*new struct of type dog_t*/
 	dog_t *new__dog;
+
 	new__dog = (dog_t *)malloc(sizeof(dog_t));
 
 	if (new__dog == NULL)
@@ -34,7 +35,7 @@ dog_t *new_dog(char *name, float age, char *owner)
 
 		free(new__dog);
 		return (NULL);
-	}	
+	}
 
 	for (k = 0; k <= i; k++)
 		new__dog->name[k] = name[k];
