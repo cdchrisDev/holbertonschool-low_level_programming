@@ -1,3 +1,4 @@
+#include "main.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -10,11 +11,15 @@
 char *str_concat(char *s1, char *s2)
 {
 	char *temp;
-	int i = strlen(s1);
+	int i;
 
-	if (s1 == NULL || s2 == NULL)
-		return (NULL);
+	if (s1 == NULL)
+		s1 = "";
 
+	if (s2 == NULL)
+		s2 = "";
+
+	i = strlen(s1);
 	temp = malloc(strlen(s1) + strlen(s2) + 1);
 
 	if (temp == NULL)
