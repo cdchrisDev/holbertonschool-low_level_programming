@@ -9,9 +9,11 @@
  */
 char *_strdup(char *str)
 {
-	char *j = NULL;
+	char *j = malloc(strlen(str) + 1);
 
-	j = malloc(strlen(str) + 1);
+	if (j = NULL)
+		return (NULL);
+
 	strcpy(j, str);
 
 	return (j);
