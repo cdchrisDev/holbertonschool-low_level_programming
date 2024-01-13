@@ -2,34 +2,40 @@
 #include <stdio.h>
 #include <stdlib.h>
 /**
- * delete_dnodeint_at_index - a func that deletes the node at index
- * @head: first node
- * @index: index
- * Return: 1 if succeeded and -1 if not
+ * delete_dnodeint_at_index - a func to delete node
+ * @head: struct
+ * @index: the index
+ * Return: updated list
  */
 int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 {
-	dlistint_t *new, *p = *head;
-	unsigned int i;
+	int n = 0;
+	dlistint_t *new = *head;
+	unsigned int i = 0;
 
-	if (index != 0)
-		for (i = 0; i < index - 1 && p != NULL; i++)
-			p = p->next;
+	*head = (*head)->next;
 
-	if (p == NULL || (p->next == NULL && index != 0))
+	if (*head == NULL || index == 0)
 		return (-1);
 
-	new = p->next;
+	while (1)
+	{
+		if (i == index)
+		{
+			*head = new->next;
+			break;
+		}
+		i++;
+	}
 
-	if (index != 0)
-	{
-		p->next = new->next;
-		free(new);
-	}
-	else
-	{
-		free(p);
-		*head = new;
-	}
+	if (new->next != NULL)
+		new->next->prev = new->prev;
+
+	if (new->prev != NULL)
+		new->prev->next = new->next;
+
+	(*head)->n = n;
+
+	free(new);
 	return (1);
 }
