@@ -1,59 +1,43 @@
 #include "lists.h"
-#include <stdio.h>
 #include <stdlib.h>
 /**
- * delete_dnodeint_at_index - a func to delete node
- * @head: struct
- * @index: the index
- * Return: updated list
+ * delete_dnodeint_at_index - delete node at index
+ * @head: double pointer to head of node
+ * @index: index to delete
+ * Return: list with deleted node, 1 on success, -1 on fail
  */
 int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 {
-	int n = 0;
-	dlistint_t *new = *head;
+	dlistint_t *temp, *following = NULL;
 	unsigned int i = 0;
 
-	new = *head;
-	prev = *head;
-
-	if (*head == NULL || index == 0)
-		return (-1);
-
-	while (1)
+	if ((*head) == NULL)
 	{
-		if (i == 0 && index == 1)
-		{
-			*head = *head->next;
-			free(new);
-			break;
-		}
-		else
-		{
-			if (i == index - 1 && new)
-			{
-				prev->next = new->next;
-				free(new);
-			}
-			else
-			{
-				prev = new;
-
-				if (prev == NULL)
-					break;
-				new = new->next;
-			}
-		}
-		i++;
+		return (-1);
 	}
-
-	if (new->next != NULL)
-		new->next->prev = new->prev;
-
-	if (new->prev != NULL)
-		new->prev->next = new->next;
-
-	(*head)->n = n;
-
-	free(new);
+	temp = (*head);
+	if (index == 0)
+	{
+		*head = temp->next;
+		if (temp->next != NULL)
+		{
+			temp->next->prev = NULL;
+		}
+		free(temp);
+		return (1);
+	}
+	for (i = 0; i < (index - 1); i++)
+	{
+		if (temp == NULL || temp->next == NULL)
+		{
+			return (-1);
+		}
+		temp = temp->next;
+	}
+	following = temp->next->next;
+	if (temp->next->next != NULL)
+		temp->next->next->prev = temp;
+	free(temp->next);
+	temp->next = following;
 	return (1);
 }
