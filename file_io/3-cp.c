@@ -1,9 +1,10 @@
+#include "main.h"
 #include <stdlib.h>
 #include <unistd.h>
 #include <fcntl.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-
+#include <stdio.h>
 /**
  * main - Copy the contents of a file to other file
  * @argc: num arg
