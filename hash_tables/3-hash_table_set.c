@@ -11,39 +11,43 @@
  */
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
-	size_t i = 0;
-	hash_node_t *new, *s;
+	hash_node_t *new, *S = NULL;
+	unsigned long int i;
+	char *val;
+
+	if (!ht || !key || !*key || !value)
+		return (0);
+
+	val = strdup(value);
+	if (!val)
+		return (0);
 
 	i = key_index((unsigned char *)key, ht->size);
+	S = ht->array[i];
 
-	if (key == NULL || value == NULL)
-		return (0);
-
-	if (ht->array[i] != NULL)
-		for (s = ht->array[i]; s; s = s->next)
-			if (strcmp(key, s->key) == 0)
-			{
-				free(s->value);
-				s->value = strdup(value);
-				if (s->value == NULL)
-					return (0);
-
-				return (1);
-			}
-
-	new = calloc(sizeof(*new), 1);
-	if (new == NULL)
-		return (0);
-
-	new->key = strdup(key);
-	new->value = strdup(value);
-	if (new->key == NULL || new->value == NULL)
+	while (S)
 	{
-		free(new->key);
-		free(new->value);
+		if (!strcmp(key, S->key))
+		{
+			free(S->value);
+			S->value = val;
+			return (1);
+		}
+		S = S->next;
+	}
+	new = malloc(sizeof(hash_node_t));
+	if (!new)
+	{
+		free(val);
+		return (0);
+	}
+	new->key = strdup(key);
+	if (!new->key)
+	{
 		free(new);
 		return (0);
 	}
+	new->value = val;
 	new->next = ht->array[i];
 	ht->array[i] = new;
 	return (1);
