@@ -7,44 +7,41 @@
  * @ht: hash table
  * @key: a key
  * @value: a value
+ * Return: 1 for success, 0 if it fails
  */
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
-	unsigned long int cnt, i = 0;
-	hash_node_t *new;
-	char *val;
+	size_t i = 0;
+	hash_node_t *new, *s;
 
-	/* error checking */
-	if (ht == NULL || key == NULL || value == NULL)
+	i = key_index((unsigned char *)key, ht->size);
+
+	if (key == NULL || value == NULL)
 		return (0);
 
-	val = strdup(value);
-	if (val == NULL)
-		return (0);
+	if (ht->array[i] != NULL)
+		for (s = ht->array[i]; s; s = s->next)
+			if (strcmp(key, s->key) == 0)
+			{
+				free(s->value);
+				s->value = strdup(value);
+				return (1);
+			}
 
-	new = malloc(sizeof(hash_node_t));
+	new = calloc(sizeof(*new), 1);
 	if (new == NULL)
 		return (0);
 
-	i = key_index((const unsigned char *)key, ht->size);
-	for (cnt = i; ht->array[i]; i++)
-	{
-		if (strcmp(ht->array[i]->key, key) == 0)
-		{
-			free(ht->array[i]->value);
-			ht->array[i]->value = val;
-			return (1);
-		}
-	}
 	new->key = strdup(key);
-	if (new->key == NULL)
+	new->value = strdup(value);
+	if (new->key == NULL || new->value == NULL)
 	{
+		free(new->key);
+		free(new->value);
 		free(new);
 		return (0);
 	}
-	new->value = val;
-	new->next = ht->array[cnt] = ht->array[i];
+	new->next = ht->array[i];
 	ht->array[i] = new;
-
-	return (1); 
+	return (1);
 }
