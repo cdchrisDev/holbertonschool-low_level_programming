@@ -2,6 +2,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 /**
  * hash_table_get - get the value link to the key
  * @ht: hash table
