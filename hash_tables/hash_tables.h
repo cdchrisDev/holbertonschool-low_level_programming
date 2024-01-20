@@ -1,6 +1,6 @@
 #ifndef HASH_TABLES_H
 #define HASH_TABLES_H
-
+#include <stddef.h>
 /**
  * struct hash_node_s - node of a hash table
  * The key is unique in the HashTable
