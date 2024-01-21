@@ -1,4 +1,85 @@
 # C - Bit manipulation
+### Resources: 
+# Binary left and right shift
+## It is basicaly used to multiply `left` or divide `right` by the bit sequence
+**Binary representation of 22 int**<br />
+```
+N = 22;  //left and right shift means we change the position of certain bit
+**EXAMPLE**
+[0][0][0][1][0][1][1][0]
+// shifting 22, 1 position to the left. Let us represent 44 in binary 
+[0][0][1][0][1][1][0][0] //left shit change the first bit to set it at the end
+**IN PROGRAM**
+N = N << 1; // N is equal to N shifted 1 position to the left (1 can be any int)
+N = N << i; N = N * (2^i);
+```
+**AND operator (&)**<br />
+Check if two operands are set to 1, if so. The corresponding bits are 1.
+```
+int main(void) {
+unsigned int number1 = 65535;
+unsigned int mask = 1;
+puts("The result of combining the following");
+displayBits(number1);
+displayBits(mask);
+puts("using the bitwise AND operator & is");
+displayBits(number & mask);
+======= OUTPUT ==========
+The result of combining the following
+65535 = 00000000 00000000 11111111 11111111
+    1 = 00000000 00000000 00000000 00000000
+using the bitwise AND operator & is
+    1 = 00000000 00000000 00000000 00000001
+```
+**OR bitwise inclusive OR (|)**<br />
+check if at least 1 operand is set to 1
+```
+number1 = 15;
+unsigned int setBits = 241;
+puts("The result of combining the following");
+displayBits(number1);
+displayBits(setBits);
+puts("using the bitwise incluse OR operator |is");
+displayBits(number | setBits);
+========== OUTPUT ==============
+The result of combining the following
+ 15 = 00000000 00000000 00000000 00001111
+241 = 00000000 00000000 00000000 11110001
+using the bitwise inclusive OR operator | is
+255 = 00000000 00000000 00000000 11111111
+```
+**bitwise exclusive ZOR (^)**<br />
+Check if the corresponding bits are different
+```
+number1 = 139;
+unsigned int number2 = 199;
+puts("The result of combining the following");
+displayBits(number1);
+displayBits(number2);
+puts("using the bitwise exclusive ZOR (^) is");
+displayBits(number ^ number);
+=========== OUTPUT ==============
+The result of combining the following
+139 = 00000000 00000000 00000000 10001011
+199 = 00000000 00000000 00000000 11000111
+using the bitwise exclusive OR operator ^ is
+ 76 = 00000000 00000000 00000000 01001100
+```
+**Bitwise complement (~) operator**<br />
+flip the bits
+```
+number1 = 21845;
+puts("The one's complement of");
+displayBits(number1);
+puts("is);
+displayBits(~number);
+============ OUTPUT ===============
+The one's complement of
+     21845 = 00000000 00000000 01010101 01010101
+is
+4294945450 = 11111111 11111111 10101010 10101010
+```
+# Task
 ## 0. Write a function that converts a binary number to an unsigned int.
 * **Prototype**: `unsigned int binary_to_uint(const char *b);`
 * where `b` is pointing to a string of `0` and `1` chars
@@ -351,4 +432,10 @@ unsigned int flip_bits(unsigned long int n, unsigned long int m)
 	return (i);
 }
 ```
+
+## EXTRA CLASSWORK ASSIGNMENT
+> Write a program to generate data for N students. Use structure to create numeric ID and points (MAX 100) as 2 separate numbers of the structure. Ramdomly generate data for N students. Dislay both the ID and the points of the student who has received highest point. Write three separate functions to complete program:
+1. `generateStudentData()` Input is array of students.<br />
+2. `printStudentInfo()`input is a single student<br />
+3. `getTopStudent()` input is array of students and output is a single student
 
