@@ -4,7 +4,7 @@
 * [C Programming in Linux - open(), read(), write() functions](https://intranet.hbtn.io/rltoken/2wyxBQICb3qsEh_UOxYgyw)
 # Tasks
 ## 0. Write a function that reads a text file and prints it to the `POSIX` standard output
-* Prototype: `ssize_t read_textfile(const char *filename, size_t letters);
+* Prototype: `ssize_t read_textfile(const char *filename, size_t letters);`
 * where letters is the number of letters it should read and print`
 * returns the actual number of letters it could read and print
 * if the file can not be opened or read, return `0`
